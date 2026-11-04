@@ -26,7 +26,7 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 hero-overlay" />
         <div className="container-wide relative py-24">
-          <p className="text-ssp-gold tracking-[.25em] text-[11px] font-bold mb-6">
+          <p className="text-ssp-gold tracking-[.25em] text-[11px] font-bold mt-10">
             YOUR REAL ESTATE GROWTH PARTNER
           </p>
           <h1 className="display-title text-5xl md:text-7xl max-w-3xl">
