@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ArchitecturalImage from "./ArchitecturalImage";
 import { ArrowUpRight } from "lucide-react";
 
 export default function PageHero({
@@ -10,14 +11,9 @@ export default function PageHero({
   cta = "Book a Free Consultation",
 }) {
   return (
-    <section className="relative isolate min-h-[460px] md:min-h-[540px] flex items-center overflow-hidden bg-[#163D32] text-white">
+    <section className="relative isolate min-h-[540px] md:min-h-[620px] lg:min-h-[660px] pt-20 lg:pt-[120px] flex items-center overflow-hidden bg-[#163D32] text-white">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 -z-20 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(https://images.unsplash.com/${image}?auto=format&fit=crop&w=2000&q=85)`,
-        }}
-      />
+      <ArchitecturalImage image={image} priority className="-z-20" />
 
       {/* Cinematic Overlay */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#10251F]/95 via-[#10251F]/75 to-[#10251F]/20" />
@@ -58,7 +54,7 @@ export default function PageHero({
 
               <ArrowUpRight
                 size={17}
-                className="transition-transform duration-300 group-hover:translate-x-1 group-motion-safe:hover:-translate-y-1"
+                className="transition-transform duration-300 group-hover:translate-x-1 motion-safe:group-hover:-translate-y-1"
               />
             </Link>
           )}

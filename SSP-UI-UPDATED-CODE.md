@@ -1,16 +1,22 @@
 # SSP UI update ? complete updated source
 
-All paths are relative to `E:/My-Projects/RealEState`. Existing image assets were preserved.
+All paths are relative to `E:/My-Projects/RealEState`.
 
 ## Preview
 
-Run `npm run dev` and open http://localhost:3000. For production, run `npm run build` followed by `npm start`.
+Run `npm run dev` for development. To assess page loading without development compilation, run `npm run build`, then `npm start`, and open http://localhost:3000.
 
-## Styling and layout
+## Header and loading fixes
 
-Component styling uses Tailwind utilities in JSX. globals.css contains only Tailwind directives. The sticky header occupies 80px below lg and 120px from lg upward. Heroes sit after the header in normal document flow. Existing routes, content, form validation and the unconfigured enquiry-delivery status are preserved. Phone and email use existing NEXT_PUBLIC_COMPANY_PHONE and NEXT_PUBLIC_COMPANY_EMAIL settings, with contact-page fallbacks.
+The shared fixed header is transparent over every hero and turns white after scrolling. Hero sections alone reserve the header height: 80px below lg and 120px from lg upward. Component styling uses Tailwind utilities in JSX. globals.css contains only Tailwind directives.
 
-## Files
+The previous CSS backgrounds fetched full-width remote photos on every device without lazy loading. The existing nine photos now have local 640px, 1280px and 1920px WebP variants under `public/images/architecture/`. ArchitecturalImage selects responsive sources, prioritises heroes and lazy-loads other images. The existing logo was compressed from 395,477 bytes to 13,388 bytes at `public/images/ssp-logo.webp`; originals remain intact. No dependency was added.
+
+## Validation
+
+Production build passed. Browser checks covered all 13 routes at 320, 768, 1024 and 1440px: hero images loaded, no remote image requests, no horizontal overflow, transparent headers and headings below navigation. Mobile menu, Escape dismissal, scroll lock and white header on scroll passed. Local homepage document responses were 19?181ms and load events 132?654ms; these local measurements are not deployed network benchmarks.
+
+## Complete updated source
 
 ### `tailwind.config.js`
 
@@ -80,6 +86,7 @@ export default function RootLayout({ children }) {
 
 ```jsx
 import Link from "next/link";
+import ArchitecturalImage from "@/components/common/ArchitecturalImage";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import TrustBar from "@/components/common/TrustBar";
 import DivisionCards from "@/components/common/DivisionCards";
@@ -89,14 +96,8 @@ import EnquiryForm from "@/components/forms/EnquiryForm";
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[600px] md:min-h-[680px] flex items-center bg-ssp-dark text-white">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=90)",
-          }}
-        />
+      <section className="relative min-h-[680px] md:min-h-[760px] lg:min-h-[800px] pt-20 lg:pt-[120px] flex items-center bg-ssp-dark text-white">
+        <ArchitecturalImage image="photo-1600607687939-ce8a6c25118c" priority />
         <div className="absolute inset-0 bg-gradient-to-r from-ssp-dark/95 via-ssp-dark/75 to-ssp-dark/25" />
         <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 relative py-20 md:py-24">
           <p className="text-ssp-gold tracking-[.25em] text-[11px] font-bold mb-6">
@@ -138,13 +139,12 @@ export default function HomePage() {
       <section className="bg-ssp-cream py-16 md:py-20 lg:py-24">
         <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 grid lg:grid-cols-2 gap-14 items-center">
           <div className="relative">
-            <div
-              className="h-[420px] bg-cover bg-center"
-              style={{
-                backgroundImage:
-                  "url(https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85)",
-              }}
-            />
+            <div className="relative h-[420px] overflow-hidden bg-ssp-cream">
+              <ArchitecturalImage
+                image="photo-1600607687920-4e2a09cf159d"
+                sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, 100vw"
+              />
+            </div>
             <div className="absolute -bottom-5 -right-2 md:right-[-22px] bg-ssp-green text-white p-7 max-w-[230px]">
               <p className="font-serif text-3xl">One trusted partner</p>
               <p className="text-xs text-white/65 mt-2">
@@ -942,6 +942,7 @@ export default function Wealth(){return <><PageHero eyebrow="SSP WEALTH" title="
 ```jsx
 
 import Link from "next/link";
+import ArchitecturalImage from "./ArchitecturalImage";
 import { ArrowUpRight } from "lucide-react";
 
 const divisions = [
@@ -1016,11 +1017,10 @@ export default function DivisionCards({ compact = false }) {
               className="group relative block overflow-hidden bg-[#163D32] min-h-[400px] md:min-h-[460px]"
             >
               {/* Background Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out motion-safe:group-hover:scale-105"
-                style={{
-                  backgroundImage: `url(https://images.unsplash.com/${division.image}?auto=format&fit=crop&w=1000&q=85)`,
-                }}
+              <ArchitecturalImage
+                image={division.image}
+                sizes={compact ? "(min-width: 640px) 50vw, 100vw" : "(min-width: 1280px) 280px, (min-width: 640px) 50vw, 100vw"}
+                className="transition-transform duration-700 ease-out motion-safe:group-hover:scale-105"
               />
 
               {/* Image Overlay */}
@@ -1081,6 +1081,7 @@ export default function DivisionCards({ compact = false }) {
 
 ```jsx
 import Link from "next/link";
+import ArchitecturalImage from "./ArchitecturalImage";
 import { ArrowUpRight } from "lucide-react";
 
 export default function PageHero({
@@ -1092,14 +1093,9 @@ export default function PageHero({
   cta = "Book a Free Consultation",
 }) {
   return (
-    <section className="relative isolate min-h-[460px] md:min-h-[540px] flex items-center overflow-hidden bg-[#163D32] text-white">
+    <section className="relative isolate min-h-[540px] md:min-h-[620px] lg:min-h-[660px] pt-20 lg:pt-[120px] flex items-center overflow-hidden bg-[#163D32] text-white">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 -z-20 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(https://images.unsplash.com/${image}?auto=format&fit=crop&w=2000&q=85)`,
-        }}
-      />
+      <ArchitecturalImage image={image} priority className="-z-20" />
 
       {/* Cinematic Overlay */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#10251F]/95 via-[#10251F]/75 to-[#10251F]/20" />
@@ -1140,7 +1136,7 @@ export default function PageHero({
 
               <ArrowUpRight
                 size={17}
-                className="transition-transform duration-300 group-hover:translate-x-1 group-motion-safe:hover:-translate-y-1"
+                className="transition-transform duration-300 group-hover:translate-x-1 motion-safe:group-hover:-translate-y-1"
               />
             </Link>
           )}
@@ -1492,7 +1488,17 @@ export default function SiteHeader() {
   const pathname = usePathname();
 
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+
+  const transparent = !scrolled && !open;
+
+  useEffect(() => {
+    const updateScroll = () => setScrolled(window.scrollY > 30);
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    return () => window.removeEventListener("scroll", updateScroll);
+  }, [pathname]);
 
   const phone = process.env.NEXT_PUBLIC_COMPANY_PHONE;
   const email = process.env.NEXT_PUBLIC_COMPANY_EMAIL;
@@ -1539,13 +1545,13 @@ export default function SiteHeader() {
 
   return (
     <header
-      className="sticky top-0 z-50 transition-all duration-300 bg-white shadow-[0_4px_25px_rgba(0,0,0,0.08)]"
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${transparent ? "bg-transparent" : "bg-white shadow-lg"}`}
     >
       {/* Top utility bar */}
       <div
-        className="hidden lg:block border-b transition-all duration-300 border-gray-100 bg-[#163D32]"
+        className={`hidden h-10 border-b lg:block ${transparent ? "border-white/20 bg-black/10" : "border-ssp-green bg-ssp-green"}`}
       >
-        <div className="mx-auto flex h-10 max-w-[1280px] items-center justify-between px-12 text-xs text-white">
+        <div className="mx-auto flex h-full max-w-[1280px] items-center justify-between px-12 text-xs text-white">
           <p>Building Trust. Creating Futures.</p>
 
           <div className="flex items-center gap-6">
@@ -1580,10 +1586,10 @@ export default function SiteHeader() {
         >
           <div className="flex items-center justify-center rounded-md px-2 py-1">
             <Image
-              src="/images/ssp_logo.png?v=4"
+              src="/images/ssp-logo.webp"
               alt="Swayam Sampada Properties"
-              width={600}
-              height={640}
+              width={128}
+              height={136}
               priority
               unoptimized
               className="h-[68px] w-auto max-w-[190px] object-contain"
@@ -1598,7 +1604,7 @@ export default function SiteHeader() {
               key={link.href}
               href={link.href}
               aria-current={pathname === link.href ? "page" : undefined}
-              className="text-sm font-medium transition-colors text-ssp-charcoal hover:text-ssp-green aria-[current=page]:text-ssp-green aria-[current=page]:underline aria-[current=page]:decoration-ssp-gold aria-[current=page]:underline-offset-8"
+              className={`text-sm font-medium transition-colors hover:text-ssp-gold aria-[current=page]:underline aria-[current=page]:decoration-ssp-gold aria-[current=page]:underline-offset-8 ${transparent ? "text-white" : "text-ssp-charcoal"}`}
             >
               {link.name}
             </Link>
@@ -1613,7 +1619,7 @@ export default function SiteHeader() {
             <button
               aria-expanded={servicesOpen}
               onClick={() => setServicesOpen(!servicesOpen)}
-              className="flex items-center gap-2 text-sm font-medium transition-colors text-ssp-charcoal hover:text-ssp-green aria-[current=page]:text-ssp-green aria-[current=page]:underline aria-[current=page]:decoration-ssp-gold aria-[current=page]:underline-offset-8"
+              className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-ssp-gold ${transparent ? "text-white" : "text-ssp-charcoal"}`}
             >
               Services
               <ChevronDown
@@ -1659,7 +1665,7 @@ export default function SiteHeader() {
               key={link.href}
               href={link.href}
               aria-current={pathname === link.href ? "page" : undefined}
-              className="text-sm font-medium transition-colors text-ssp-charcoal hover:text-ssp-green aria-[current=page]:text-ssp-green aria-[current=page]:underline aria-[current=page]:decoration-ssp-gold aria-[current=page]:underline-offset-8"
+              className={`text-sm font-medium transition-colors hover:text-ssp-gold aria-[current=page]:underline aria-[current=page]:decoration-ssp-gold aria-[current=page]:underline-offset-8 ${transparent ? "text-white" : "text-ssp-charcoal"}`}
             >
               {link.name}
             </Link>
@@ -1681,7 +1687,7 @@ export default function SiteHeader() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-navigation"
-          className="relative z-50 xl:hidden text-[#163D32]"
+          className={`relative z-50 p-2 xl:hidden ${transparent ? "text-white" : "text-ssp-green"}`}
         >
           {open ? <X size={27} /> : <Menu size={27} />}
         </button>
@@ -1881,6 +1887,34 @@ export default function SiteFooter() {
         </div>
       </div>
     </footer>
+  );
+}
+```
+
+### `src/components/common/ArchitecturalImage.js`
+
+```jsx
+/** Responsive local photography; generated sizes avoid external requests and runtime transforms. */
+export default function ArchitecturalImage({
+  image,
+  priority = false,
+  sizes = "100vw",
+  className = "",
+}) {
+  const base = `/images/architecture/${image}`;
+
+  return (
+    <img
+      src={`${base}-1280.webp`}
+      srcSet={`${base}-640.webp 640w, ${base}-1280.webp 1280w, ${base}-1920.webp 1920w`}
+      sizes={sizes}
+      alt=""
+      aria-hidden="true"
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
+      decoding="async"
+      className={`absolute inset-0 h-full w-full object-cover ${className}`}
+    />
   );
 }
 ```
