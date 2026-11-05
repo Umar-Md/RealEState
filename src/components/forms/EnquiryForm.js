@@ -1,5 +1,7 @@
 "use client";
+
 import { useState } from "react";
+
 const interestOptions = [
   "SSP Realty – Buy / Sell",
   "SSP Properties – Residential",
@@ -10,6 +12,7 @@ const interestOptions = [
   "SSP Infrastructure – Industrial / Projects",
   "Partner with SSP",
 ];
+
 export default function EnquiryForm({ partner = false }) {
   const [form, setForm] = useState({
     name: "",
@@ -22,42 +25,51 @@ export default function EnquiryForm({ partner = false }) {
     consent: false,
   });
   const [status, setStatus] = useState("");
+
   const update = (e) =>
     setForm({
       ...form,
       [e.target.name]:
         e.target.type === "checkbox" ? e.target.checked : e.target.value,
     });
+
   const submit = (e) => {
     e.preventDefault();
     setStatus(
       "Your details passed the form checks. Enquiry delivery is not configured yet; please connect the company email or CRM endpoint before accepting live enquiries.",
     );
   };
+
   const field =
-    "w-full border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-ssp-green";
+    "w-full border border-gray-200 bg-white px-4 py-3 text-sm rounded-none outline-none transition-colors focus:border-ssp-green focus:ring-2 focus:ring-ssp-green/15";
+
+  // Prevent duplicate "Partner with SSP" entry if partner is true
+  const options = partner
+    ? ["Partner with SSP", ...interestOptions.filter((opt) => opt !== "Partner with SSP")]
+    : interestOptions;
+
   return (
     <form
       onSubmit={submit}
-      className="bg-white p-6 md:p-9 border border-gray-200 space-y-5"
+      className="bg-white p-6 md:p-9 border border-ssp-green/15 border-t-2 border-t-ssp-gold space-y-5 shadow-sm"
     >
-      <div className="grid md:grid-cols-2 gap-5">
-        <label className="text-xs font-bold text-gray-700">
+      <div className="grid min-w-0 sm:grid-cols-2 gap-5">
+        <label className="min-w-0 text-xs font-semibold text-ssp-dark">
           Full name *
           <input
             className={`${field} mt-2`}
-            name="name"
+            autoComplete="name" name="name"
             value={form.name}
             onChange={update}
             required
             placeholder="Your name"
           />
         </label>
-        <label className="text-xs font-bold text-gray-700">
+        <label className="min-w-0 text-xs font-semibold text-ssp-dark">
           Phone number *
           <input
             className={`${field} mt-2`}
-            name="phone"
+            type="tel" autoComplete="tel" name="phone"
             value={form.phone}
             onChange={update}
             required
@@ -65,18 +77,18 @@ export default function EnquiryForm({ partner = false }) {
             placeholder="+91"
           />
         </label>
-        <label className="text-xs font-bold text-gray-700">
+        <label className="min-w-0 text-xs font-semibold text-ssp-dark">
           Email address
           <input
             className={`${field} mt-2`}
             type="email"
-            name="email"
+            autoComplete="email" name="email"
             value={form.email}
             onChange={update}
             placeholder="you@example.com"
           />
         </label>
-        <label className="text-xs font-bold text-gray-700">
+        <label className="min-w-0 text-xs font-semibold text-ssp-dark">
           I am interested in *
           <select
             className={`${field} mt-2`}
@@ -86,15 +98,14 @@ export default function EnquiryForm({ partner = false }) {
             required
           >
             <option value="">Select a requirement</option>
-            {(partner
-              ? ["Partner with SSP", ...interestOptions]
-              : interestOptions
-            ).map((x) => (
-              <option key={x}>{x}</option>
+            {options.map((x) => (
+              <option key={x} value={x}>
+                {x}
+              </option>
             ))}
           </select>
         </label>
-        <label className="text-xs font-bold text-gray-700">
+        <label className="min-w-0 text-xs font-semibold text-ssp-dark">
           Preferred city / location
           <input
             className={`${field} mt-2`}
@@ -104,7 +115,7 @@ export default function EnquiryForm({ partner = false }) {
             placeholder="Enter preferred location"
           />
         </label>
-        <label className="text-xs font-bold text-gray-700">
+        <label className="min-w-0 text-xs font-semibold text-ssp-dark">
           Budget range (optional)
           <input
             className={`${field} mt-2`}
@@ -115,7 +126,7 @@ export default function EnquiryForm({ partner = false }) {
           />
         </label>
       </div>
-      <label className="block text-xs font-bold text-gray-700">
+      <label className="block min-w-0 text-xs font-semibold text-ssp-dark">
         Your message
         <textarea
           className={`${field} mt-2 min-h-28 resize-y`}
@@ -137,7 +148,7 @@ export default function EnquiryForm({ partner = false }) {
         I agree to be contacted by Swayam Sampada Properties regarding this
         enquiry.
       </label>
-      <button className="btn-primary w-full md:w-auto" type="submit">
+      <button className="inline-flex min-h-12 items-center justify-center gap-3 bg-ssp-gold px-6 py-3.5 text-sm font-semibold text-ssp-dark transition-colors hover:bg-ssp-dark hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ssp-gold w-full md:w-auto" type="submit">
         Send Enquiry <span aria-hidden>↗</span>
       </button>
       {status && (

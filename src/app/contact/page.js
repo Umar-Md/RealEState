@@ -15,10 +15,10 @@ export default function Contact() {
         title="Let's Talk Property"
         description="Share your requirement and the SSP team can follow up once contact and enquiry channels are configured."
         image="photo-1497366754035-f200968a6e72"
-        cta="Send an Enquiry"
+        cta="Send an Enquiry" ctaHref="#enquiry"
       />
-      <section className="section-pad bg-ssp-cream">
-        <div className="container-wide grid lg:grid-cols-[.75fr_1.25fr] gap-12">
+      <section id="enquiry" className="scroll-mt-36 py-16 md:py-20 lg:py-24 bg-ssp-cream">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 grid lg:grid-cols-[.75fr_1.25fr] gap-12">
           <div>
             <SectionHeading
               eyebrow="GET IN TOUCH"

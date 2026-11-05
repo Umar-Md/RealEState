@@ -15,15 +15,15 @@ export default function Infrastructure() {
         image="photo-1487958449943-2429e8be8625"
         cta="Talk to an Advisor"
       />
-      <section className="section-pad">
-        <div className="container-wide">
+      <section className="py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
           <SectionHeading
             eyebrow="WHAT WE SUPPORT"
             title="The larger side of real estate"
             description="SSP Infrastructure supports industrial and logistics space, and projects that bring developers, landowners and institutional partners together."
           />
           <div className="grid md:grid-cols-2 gap-6 mt-10">
-            <article className="bg-ssp-cream p-8">
+            <article className="bg-ssp-cream p-6 sm:p-8 border-t-2 border-ssp-gold">
               <h3 className="font-serif text-2xl">Industrial & Logistics</h3>
               <p className="text-sm leading-7 text-gray-600 mt-4">
                 For manufacturers, 3PL providers, e-commerce players and
@@ -32,7 +32,7 @@ export default function Infrastructure() {
                 advisory.
               </p>
             </article>
-            <article className="bg-ssp-cream p-8">
+            <article className="bg-ssp-cream p-6 sm:p-8 border-t-2 border-ssp-gold">
               <h3 className="font-serif text-2xl">Project Partnerships</h3>
               <p className="text-sm leading-7 text-gray-600 mt-4">
                 For developers, landowners and institutional partners. We review

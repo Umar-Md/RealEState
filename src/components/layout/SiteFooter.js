@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, MapPin, Phone, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const groups = [
   [
@@ -31,12 +31,9 @@ const groups = [
   ],
 ];
 export default function SiteFooter() {
-  const phone = process.env.NEXT_PUBLIC_COMPANY_PHONE;
-  const email = process.env.NEXT_PUBLIC_COMPANY_EMAIL;
-  const address = process.env.NEXT_PUBLIC_COMPANY_ADDRESS;
   return (
-    <footer className="bg-[#052d15] text-white">
-      <div className="container-wide py-16 grid lg:grid-cols-[1.5fr_2fr] gap-12">
+    <footer className="bg-ssp-dark text-white">
+      <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 py-16 grid lg:grid-cols-[1.5fr_2fr] gap-12">
         <div>
           <div className="flex items-center gap-3 mb-6">
             <span className="w-12 h-12 bg-ssp-gold text-ssp-dark flex items-center justify-center font-serif text-xl">
@@ -44,7 +41,7 @@ export default function SiteFooter() {
             </span>
             <div>
               <b className="tracking-wide">SWAYAM SAMPADA</b>
-              <small className="block text-[10px] tracking-[.2em] text-white/55">
+              <small className="block text-[10px] tracking-[.2em] text-white/70">
                 PROPERTIES PVT LTD
               </small>
             </div>
@@ -52,7 +49,7 @@ export default function SiteFooter() {
           <p className="font-serif text-2xl leading-snug max-w-sm">
             Connecting Properties. Creating Assets. Building Wealth.
           </p>
-          <p className="text-sm text-white/55 mt-4">
+          <p className="text-sm text-white/70 mt-4">
             Your Real Estate Growth Partner.
           </p>
           <Link
@@ -82,7 +79,7 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-wide py-6 grid md:grid-cols-2 gap-4 text-xs text-white/50">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 py-6 grid md:grid-cols-2 gap-4 text-xs text-white/65">
           <p>
             © {new Date().getFullYear()} Swayam Sampada Properties Pvt Ltd. All
             rights reserved.

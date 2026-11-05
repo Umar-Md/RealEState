@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ssp: { green: "#0b5a26", dark: "#063d1a", gold: "#e0b73a", yellow: "#ffe21a", cream: "#f7f8f4" }
+        ssp: { green: "#163D32", dark: "#163D32", gold: "#C6A15B", cream: "#F8F6EF", charcoal: "#2B2B2D" }
       },
       fontFamily: { sans: ["Arial", "Helvetica", "sans-serif"], display: ["Georgia", "serif"] }
     }

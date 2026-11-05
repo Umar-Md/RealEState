@@ -48,8 +48,8 @@ export default function Solutions() {
         image="photo-1486406146926-c627a92ad1ab"
       />
       <DivisionCards />
-      <section className="bg-ssp-cream section-pad">
-        <div className="container-wide">
+      <section className="bg-ssp-cream py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
           <SectionHeading
             eyebrow="SOLUTIONS BY SEGMENT"
             title="Find the support that fits your requirement"
@@ -59,7 +59,7 @@ export default function Solutions() {
             {segments.map(([title, audience, service], i) => (
               <article
                 key={title}
-                className="bg-white p-7 border border-gray-100"
+                className="bg-white p-7 border border-ssp-green/15 border-t-2 border-t-ssp-gold"
               >
                 <span className="text-xs text-ssp-green font-bold">
                   0{i + 1}
@@ -82,8 +82,8 @@ export default function Solutions() {
           </div>
         </div>
       </section>
-      <section className="section-pad">
-        <div className="container-wide">
+      <section className="py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
           <SectionHeading
             eyebrow="HOW IT WORKS"
             title="A considered process from brief to closing"

@@ -1,38 +1,72 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+
 export default function PageHero({
   eyebrow = "SWAYAM SAMPADA PROPERTIES",
   title,
   description,
   image = "photo-1600607687939-ce8a6c25118c",
+  ctaHref = "/contact",
   cta = "Book a Free Consultation",
 }) {
   return (
-    <section className="relative min-h-[390px] md:min-h-[470px] flex items-center text-white overflow-hidden">
+    <section className="relative isolate min-h-[460px] md:min-h-[540px] flex items-center overflow-hidden bg-[#163D32] text-white">
+      {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 -z-20 bg-cover bg-center"
         style={{
           backgroundImage: `url(https://images.unsplash.com/${image}?auto=format&fit=crop&w=2000&q=85)`,
         }}
       />
-      <div className="absolute inset-0 hero-overlay" />
-      <div className="container-wide relative py-20">
-        <p className="text-ssp-gold text-[11px] tracking-[.25em] font-bold mb-5">
-          {eyebrow}
-        </p>
-        <h1 className="display-title text-4xl md:text-6xl max-w-3xl">
-          {title}
-        </h1>
-        {description && (
-          <p className="mt-6 text-white/80 max-w-2xl leading-7 text-sm md:text-base">
-            {description}
-          </p>
-        )}
-        <Link href="/contact" className="btn-primary mt-8">
-          {cta}
-          <ArrowUpRight size={16} />
-        </Link>
+
+      {/* Cinematic Overlay */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#10251F]/95 via-[#10251F]/75 to-[#10251F]/20" />
+
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#10251F]/50 via-transparent to-[#10251F]/20" />
+
+      {/* Hero Content */}
+      <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 py-20 md:py-24">
+        <div className="max-w-4xl">
+          {/* Eyebrow */}
+          <div className="flex items-center gap-4 mb-7">
+            <span className="w-10 h-[2px] bg-[#C6A15B]" />
+
+            <p className="text-[#E3C58A] text-[10px] md:text-xs tracking-[0.28em] font-semibold uppercase">
+              {eyebrow}
+            </p>
+          </div>
+
+          {/* Main Heading */}
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight max-w-4xl">
+            {title}
+          </h1>
+
+          {/* Description */}
+          {description && (
+            <p className="mt-7 text-white/80 max-w-2xl text-sm md:text-base leading-7 md:leading-8">
+              {description}
+            </p>
+          )}
+
+          {/* CTA */}
+          {cta && (
+            <Link
+              href={ctaHref}
+              className="inline-flex items-center gap-4 mt-9 px-7 py-4 bg-[#C6A15B] text-[#163D32] text-xs font-bold tracking-wide transition-all duration-300 hover:bg-white motion-safe:hover:-translate-y-1 group"
+            >
+              {cta}
+
+              <ArrowUpRight
+                size={17}
+                className="transition-transform duration-300 group-hover:translate-x-1 group-motion-safe:hover:-translate-y-1"
+              />
+            </Link>
+          )}
+        </div>
       </div>
+
+      {/* Bottom Decorative Line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#C6A15B] via-[#C6A15B]/40 to-transparent" />
     </section>
   );
 }

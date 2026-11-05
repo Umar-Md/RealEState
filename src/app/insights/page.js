@@ -22,8 +22,8 @@ export default function Insights() {
         image="photo-1486406146926-c627a92ad1ab"
         cta="Talk to an Advisor"
       />
-      <section className="section-pad">
-        <div className="container-wide">
+      <section className="py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
           <SectionHeading
             eyebrow="REPORTED INDICATORS"
             title="Market context for better questions"

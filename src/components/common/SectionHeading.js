@@ -8,12 +8,12 @@ export default function SectionHeading({
   return (
     <div className={`${center ? "text-center mx-auto" : ""} max-w-3xl`}>
       {eyebrow && (
-        <p className={`eyebrow mb-4 ${light ? "text-ssp-gold" : ""}`}>
+        <p className={`text-[11px] font-semibold uppercase tracking-[0.22em] mb-4 ${light ? "text-ssp-gold" : "text-ssp-green"}`}>
           {eyebrow}
         </p>
       )}
       <h2
-        className={`display-title text-3xl md:text-5xl ${light ? "text-white" : "text-ssp-dark"}`}
+        className={`font-display tracking-[-0.035em] leading-[1.08] text-3xl md:text-5xl ${light ? "text-white" : "text-ssp-dark"}`}
       >
         {title}
       </h2>

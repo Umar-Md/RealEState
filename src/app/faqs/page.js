@@ -41,8 +41,8 @@ export default function FAQs() {
         description="Helpful information about SSP's real estate services and approach."
         image="photo-1497366811353-6870744d04b2"
       />
-      <section className="section-pad">
-        <div className="container-wide max-w-4xl">
+      <section className="py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 lg:px-12">
           {faqs.map(([q, a], i) => (
             <details
               key={q}

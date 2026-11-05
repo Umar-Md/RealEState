@@ -33,15 +33,15 @@ export default function Properties() {
         image="photo-1600566753086-00f18fb6b3ea"
         cta="Schedule a Site Visit"
       />
-      <section className="section-pad">
-        <div className="container-wide">
+      <section className="py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
           <SectionHeading
             eyebrow="PROPERTY SEGMENTS"
             title="Property decisions start with the right context"
           />
           <div className="grid md:grid-cols-2 gap-5 mt-10">
             {types.map(([t, d], i) => (
-              <div className="p-8 border border-gray-200" key={t}>
+              <div className="p-6 sm:p-8 border border-ssp-green/15 border-t-2 border-t-ssp-gold" key={t}>
                 <span className="text-xs font-bold text-ssp-green">
                   0{i + 1}
                 </span>

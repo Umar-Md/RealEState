@@ -21,8 +21,8 @@ export default function Realty() {
         image="photo-1600607687939-ce8a6c25118c"
         cta="Talk to an Advisor"
       />
-      <section className="section-pad">
-        <div className="container-wide grid lg:grid-cols-2 gap-14">
+      <section className="py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 grid lg:grid-cols-2 gap-14">
           <SectionHeading
             eyebrow="OVERVIEW"
             title="Connecting the right property with the right person"
@@ -40,8 +40,8 @@ export default function Realty() {
           </div>
         </div>
       </section>
-      <section className="bg-ssp-cream section-pad">
-        <div className="container-wide">
+      <section className="bg-ssp-cream py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
           <SectionHeading
             eyebrow="WHY SSP REALTY"
             title="Local knowledge. Verification before recommendation."

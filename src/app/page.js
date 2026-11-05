@@ -1,13 +1,5 @@
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  CheckCircle2,
-  MapPin,
-  Search,
-  BarChart3,
-  Building2,
-  Handshake,
-} from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import TrustBar from "@/components/common/TrustBar";
 import DivisionCards from "@/components/common/DivisionCards";
 import SectionHeading from "@/components/common/SectionHeading";
@@ -16,7 +8,7 @@ import EnquiryForm from "@/components/forms/EnquiryForm";
 export default function HomePage() {
   return (
     <>
-      <section className="relative min-h-[620px] md:min-h-[690px] flex items-center text-white">
+      <section className="relative min-h-[600px] md:min-h-[680px] flex items-center bg-ssp-dark text-white">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -24,12 +16,12 @@ export default function HomePage() {
               "url(https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=90)",
           }}
         />
-        <div className="absolute inset-0 hero-overlay" />
-        <div className="container-wide relative py-24">
-          <p className="text-ssp-gold tracking-[.25em] text-[11px] font-bold mt-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-ssp-dark/95 via-ssp-dark/75 to-ssp-dark/25" />
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 relative py-20 md:py-24">
+          <p className="text-ssp-gold tracking-[.25em] text-[11px] font-bold mb-6">
             YOUR REAL ESTATE GROWTH PARTNER
           </p>
-          <h1 className="display-title text-5xl md:text-7xl max-w-3xl">
+          <h1 className="font-display tracking-[-0.035em] leading-[1.08] text-[2.65rem] sm:text-6xl lg:text-7xl max-w-3xl">
             Connecting Properties.
             <br />
             Creating Assets.
@@ -41,11 +33,11 @@ export default function HomePage() {
             development, Swayam Sampada Properties brings real estate solutions
             together under one trusted roof.
           </p>
-          <div className="flex flex-wrap gap-3 mt-9">
-            <Link href="/contact" className="btn-primary">
+          <div className="flex flex-wrap gap-3 mt-9 rounded-sm">
+            <Link href="/contact" className="inline-flex min-h-12 items-center justify-center gap-3 bg-ssp-gold px-6 py-3.5 text-sm font-semibold text-ssp-dark transition-colors hover:bg-ssp-dark hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ssp-gold">
               Book a Free Consultation <ArrowUpRight size={16} />
             </Link>
-            <Link href="/solutions" className="btn-outline">
+            <Link href="/solutions" className="inline-flex min-h-12 items-center justify-center gap-3 border border-white/50 px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white hover:text-ssp-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ssp-gold">
               Explore Services
             </Link>
           </div>
@@ -53,7 +45,7 @@ export default function HomePage() {
             స్వయంగా సంపదను సృష్టించండి
           </p>
         </div>
-        <div className="hidden lg:block absolute right-[6%] bottom-12 border border-white/30 bg-black/15 backdrop-blur-sm p-5 max-w-[230px]">
+        <div className="hidden xl:block absolute right-[6%] bottom-12 border border-white/30 bg-black/15 backdrop-blur-sm p-5 max-w-[230px]">
           <p className="text-ssp-gold text-xs tracking-widest">ONE PARTNER</p>
           <p className="font-serif text-xl mt-2">
             Four focused divisions. A connected approach.
@@ -62,8 +54,8 @@ export default function HomePage() {
       </section>
       <TrustBar />
       <DivisionCards />
-      <section className="bg-ssp-cream section-pad">
-        <div className="container-wide grid lg:grid-cols-2 gap-14 items-center">
+      <section className="bg-ssp-cream py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 grid lg:grid-cols-2 gap-14 items-center">
           <div className="relative">
             <div
               className="h-[420px] bg-cover bg-center"
@@ -107,8 +99,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="section-pad">
-        <div className="container-wide">
+      <section className="py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
           <SectionHeading
             eyebrow="OUR APPROACH"
             title="A clearer way to assess property opportunities"
@@ -143,24 +135,24 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="bg-ssp-dark text-white section-pad">
-        <div className="container-wide grid lg:grid-cols-[1fr_auto] gap-8 items-center">
+      <section className="bg-ssp-dark text-white py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 grid lg:grid-cols-[1fr_auto] gap-8 items-center">
           <div>
-            <p className="eyebrow text-ssp-gold mb-4">LET'S MOVE FORWARD</p>
-            <h2 className="display-title text-4xl md:text-5xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-ssp-gold mb-4">LET'S MOVE FORWARD</p>
+            <h2 className="font-display tracking-[-0.035em] leading-[1.08] text-4xl md:text-5xl">
               Ready to find the right opportunity?
             </h2>
             <p className="text-white/65 mt-4">
               Talk to an SSP advisor about your property requirement.
             </p>
           </div>
-          <Link href="/contact" className="btn-primary">
+          <Link href="/contact" className="inline-flex min-h-12 items-center justify-center gap-3 bg-ssp-gold px-6 py-3.5 text-sm font-semibold text-ssp-dark transition-colors hover:bg-ssp-dark hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ssp-gold">
             Talk to our team <ArrowUpRight size={16} />
           </Link>
         </div>
       </section>
-      <section className="section-pad bg-ssp-cream">
-        <div className="container-wide grid lg:grid-cols-[.8fr_1.2fr] gap-12">
+      <section className="py-16 md:py-20 lg:py-24 bg-ssp-cream">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 grid lg:grid-cols-[.8fr_1.2fr] gap-12">
           <div>
             <SectionHeading
               eyebrow="CONTACT"

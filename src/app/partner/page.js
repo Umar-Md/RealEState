@@ -14,10 +14,10 @@ export default function Partner() {
         title="Build Your Real Estate Career with SSP"
         description="Grow with a four-pillar service brand and learn sales, leasing and advisory."
         image="photo-1521737711867-e3b97375f902"
-        cta="Partner with SSP"
+        cta="Partner with SSP" ctaHref="#enquiry"
       />
-      <section className="section-pad">
-        <div className="container-wide grid lg:grid-cols-2 gap-14">
+      <section id="enquiry" className="scroll-mt-36 py-16 md:py-20 lg:py-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 grid lg:grid-cols-2 gap-14">
           <div>
             <SectionHeading
               eyebrow="PARTNER WITH SSP"
