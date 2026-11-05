@@ -1,6 +1,7 @@
 import "./globals.css";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 export const metadata = {
   metadataBase: new URL(
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
         <SiteHeader />
         <main id="main-content" className="min-w-0">{children}</main>
         <SiteFooter />
+        <WhatsAppButton />
       </body>
     </html>
   );

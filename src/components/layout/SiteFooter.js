@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 const groups = [
@@ -35,17 +36,16 @@ export default function SiteFooter() {
     <footer className="bg-ssp-dark text-white">
       <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 py-16 grid lg:grid-cols-[1.5fr_2fr] gap-12">
         <div>
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-12 h-12 bg-ssp-gold text-ssp-dark flex items-center justify-center font-serif text-xl">
-              SSP
-            </span>
-            <div>
-              <b className="tracking-wide">SWAYAM SAMPADA</b>
-              <small className="block text-[10px] tracking-[.2em] text-white/70">
-                PROPERTIES PVT LTD
-              </small>
-            </div>
-          </div>
+          <Link href="/" className="mb-6 inline-flex">
+            <Image
+              src="/images/ssp-logo.webp"
+              alt="Swayam Sampada Properties — Home"
+              width={128}
+              height={136}
+              unoptimized
+              className="h-[80px] w-auto object-contain"
+            />
+          </Link>
           <p className="font-serif text-2xl leading-snug max-w-sm">
             Connecting Properties. Creating Assets. Building Wealth.
           </p>
