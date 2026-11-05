@@ -1,2 +1,10 @@
-const nextConfig = { images: { remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }] } };
+const nextConfig = {
+  output: "export",
+  trailingSlash: true,
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
+  images: {
+    unoptimized: true,
+    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+  },
+};
 export default nextConfig;

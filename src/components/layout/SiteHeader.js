@@ -199,7 +199,7 @@ export default function SiteHeader() {
           className="relative z-50 flex h-full shrink-0 items-center"
         >
           <Image
-            src="/images/ssp-logo.webp"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/ssp-logo.webp`}
             alt="Swayam Sampada Properties"
             width={150}
             height={150}

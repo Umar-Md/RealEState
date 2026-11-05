@@ -17,6 +17,18 @@ npm run dev
 On Windows PowerShell, use `Copy-Item .env.example .env.local` instead of `cp`.
 Open http://localhost:3000.
 
+## GitHub Pages
+
+The site exports static files to `out/`. The workflow in `.github/workflows/deploy-pages.yml` builds and deploys on pushes to `main` or a manual workflow run.
+
+1. Open https://github.com/Umar-Md/RealEState/settings/pages and select **GitHub Actions** under **Build and deployment > Source**.
+2. Commit and push these changes to `main`.
+3. Wait for **Deploy to GitHub Pages** in the repository's Actions tab to finish.
+
+The site will be available at https://umar-md.github.io/RealEState/.
+
+The workflow uses the Pages URL and base path for assets and metadata. Local development continues to use `/`. GitHub Pages serves static files; the enquiry form still needs an external delivery service.
+
 ## Included pages
 
 - `/` Home

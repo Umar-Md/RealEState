@@ -5,7 +5,7 @@ export default function ArchitecturalImage({
   sizes = "100vw",
   className = "",
 }) {
-  const base = `/images/architecture/${image}`;
+  const base = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/architecture/${image}`;
 
   return (
     <img

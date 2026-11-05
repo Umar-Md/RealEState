@@ -38,7 +38,7 @@ export default function SiteFooter() {
         <div>
           <Link href="/" className="mb-6 inline-flex">
             <Image
-              src="/images/ssp-logo.webp"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/ssp-logo.webp`}
               alt="Swayam Sampada Properties — Home"
               width={128}
               height={136}
