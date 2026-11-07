@@ -1,61 +1,65 @@
-
 import PageHero from "@/components/common/PageHero";
-import SectionHeading from "@/components/common/SectionHeading";
-import { CheckCircle2 } from "lucide-react";
+import AboutClient from "./AboutClient";
+import VisionMission from "./vision-mission/Content";
+import StrategicApproach from "./strategic-approach/Content";
+import StoryJourney from "./story-journey/Content";
+import LeadershipManagement from "./leadership-management/Content";
 
 export const metadata = {
-  title: "About SSP",
+  title: "About Us | Swayam Sampada Properties",
   description:
-    "Learn about Swayam Sampada Properties and its integrated real estate approach.",
+    "Explore Swayam Sampada Properties' vision, mission, strategic approach, journey, and leadership.",
 };
 
-export default function About() {
-  const highlights = [
-    "Transparent dealings and verified information",
-    "A location- and segment-led approach",
-    "Support across buying, selling, leasing and advisory",
-    "Residential, commercial and infrastructure capabilities",
-  ];
-
+export default function AboutPage() {
   return (
-    <>
+    <div className="min-h-screen overflow-hidden bg-[#F8F6EF] text-[#163D32]">
+      {/* PAGE HERO */}
       <PageHero
-        title="Building Wealth Through Real Estate"
-        description="An integrated real estate partner connecting sales, property solutions, investment advisory and infrastructure development."
+        title="About Swayam Sampada Properties"
+        description="Integrated Real Estate, Property & Asset Solutions — Connecting Properties. Creating Assets. Building Wealth."
         image="photo-1486406146926-c627a92ad1ab"
       />
 
-      <section className="py-16 md:py-20 lg:py-24">
-        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 grid lg:grid-cols-2 gap-14 items-center">
-          <SectionHeading
-            eyebrow="WHO WE ARE"
-            title="One partner across the property journey"
-            description="Swayam Sampada Properties Pvt Ltd brings multiple real estate capabilities together under one brand. The name 'Swayam Sampada' reflects self-built prosperity and the company's focus on helping customers make informed property decisions."
-          />
+      {/* ABOUT PAGE CONTENT */}
+      <div className="relative">
+        {/* ABOUT OVERVIEW */}
+        <section className="relative">
+          <AboutClient />
+        </section>
 
-          <div className="space-y-5">
-            {highlights.map((item) => (
-              <div
-                key={item}
-                className="flex items-start gap-3 border-b border-gray-100 pb-4 text-sm"
-              >
-                <CheckCircle2 className="text-ssp-green shrink-0" size={20} />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* VISION & MISSION */}
+        <section
+          id="vision-mission"
+          className="scroll-mt-28 border-t border-[#C6A15B]/20 py-16 md:py-24"
+        >
+          <VisionMission />
+        </section>
 
-      <section className="bg-ssp-cream py-16 md:py-20 lg:py-24">
-        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
-          <SectionHeading
-            eyebrow="OUR POSITIONING"
-            title="Connecting expertise. Creating a considered path forward."
-            description="SSP combines on-ground market knowledge with verified information. Specific leadership profiles, company milestones, vision and mission statements should be added after client confirmation."
-          />
-        </div>
-      </section>
-    </>
+        {/* STRATEGIC APPROACH */}
+        <section
+          id="strategic-approach"
+          className="scroll-mt-28 border-t border-[#C6A15B]/20"
+        >
+          <StrategicApproach />
+        </section>
+
+        {/* STORY & JOURNEY */}
+        <section
+          id="story-journey"
+          className="scroll-mt-28 border-t border-[#C6A15B]/20"
+        >
+          <StoryJourney />
+        </section>
+
+        {/* LEADERSHIP & MANAGEMENT */}
+        <section
+          id="leadership-management"
+          className="scroll-mt-28 border-t border-[#C6A15B]/20 py-16 md:py-24"
+        >
+          <LeadershipManagement />
+        </section>
+      </div>
+    </div>
   );
 }

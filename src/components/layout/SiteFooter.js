@@ -7,6 +7,10 @@ const groups = [
     "Company",
     [
       ["About Us", "/about"],
+      ["Vision & Mission", "/about#vision-mission"],
+      ["Strategic Approach", "/about#strategic-approach"],
+      ["Our Story & Journey", "/about#story-journey"],
+      ["Leadership & Management", "/about#leadership-management"],
       ["What We Do", "/solutions"],
       ["Careers", "/partner"],
       ["Insights", "/insights"],
@@ -33,18 +37,22 @@ const groups = [
 ];
 export default function SiteFooter() {
   return (
-    <footer className="bg-ssp-dark text-white">
+    <footer className="relative border-t border-white/15 bg-[#102A23]/80 text-white shadow-[0_-8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl backdrop-saturate-150">
       <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12 py-16 grid lg:grid-cols-[1.5fr_2fr] gap-12">
         <div>
-          <Link href="/" className="mb-6 inline-flex">
+          <Link href="/" aria-label="Swayam Sampada Properties Home" className="mb-6 inline-flex flex-col items-center gap-2">
             <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/ssp-logo.webp`}
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/logo-transparent.png`}
               alt="Swayam Sampada Properties — Home"
               width={128}
               height={136}
               unoptimized
-              className="h-[80px] w-auto object-contain"
+              className="h-14 w-32 object-contain"
             />
+            <span className="text-center text-[11px] font-semibold leading-tight tracking-[0.14em] text-white">
+              SWAYAM SAMPADA
+              <span className="mt-0.5 block text-[9px] tracking-[0.12em] text-[#D5B16D]">PROPERTIES PVT.LTD</span>
+            </span>
           </Link>
           <p className="font-serif text-2xl leading-snug max-w-sm">
             Connecting Properties. Creating Assets. Building Wealth.

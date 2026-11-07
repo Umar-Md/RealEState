@@ -82,7 +82,15 @@ export default function HomePage() {
       {/* ================= HERO SECTION ================= */}
       <section className="relative isolate flex min-h-[780px] items-center overflow-hidden bg-[#102A23] pt-24 text-white lg:min-h-[880px] lg:pt-32">
         {/* Background Image Layer */}
-        <ArchitecturalImage image="photo-1600607687939-ce8a6c25118c" priority />
+        <img
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/Home%20Page.jpeg`}
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
 
         {/* Ambient Overlay Gradients & Grid Pattern */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E19]/95 via-[#102A23]/85 to-[#102A23]/40" />
@@ -279,7 +287,7 @@ export default function HomePage() {
       </section>
 
       {/* ================= OUR APPROACH (SINE WAVE FLOW) ================= */}
-      <section className="relative isolate overflow-hidden bg-[#102A23] py-24 text-white md:py-32 lg:py-36">
+      <section className="relative isolate overflow-hidden bg-[#102A23] pb-8 pt-24 text-white md:pb-10 md:pt-32 lg:pt-36">
         {/* Ambient Radial Lighting */}
         <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-[#367966]/20 blur-[140px]" />
         <div className="pointer-events-none absolute -right-40 bottom-0 h-[450px] w-[450px] rounded-full bg-[#C6A15B]/15 blur-[130px]" />
@@ -483,68 +491,62 @@ export default function HomePage() {
       </section>
 
       {/* ================= CALL TO ACTION (CTA) ================= */}
-      <section className="relative isolate overflow-hidden bg-[#163D32] py-20 text-white md:py-28">
-        <div className="pointer-events-none absolute -right-20 -top-36 h-[380px] w-[380px] rounded-full border border-white/[0.08]" />
-        <div className="pointer-events-none absolute -right-8 -top-24 h-[280px] w-[280px] rounded-full border border-white/[0.08]" />
+     <section className="relative isolate overflow-hidden bg-[#102A23] pb-16 pt-6 text-white md:pb-24 md:pt-8">
+  {/* Ambient Glows & Grid Pattern */}
+  <div className="pointer-events-none absolute -right-32 top-1/2 h-[450px] w-[450px] -translate-y-1/2 rounded-full bg-[#C6A15B]/15 blur-[120px]" />
+  <div className="pointer-events-none absolute -left-32 -bottom-20 h-[380px] w-[380px] rounded-full bg-[#367966]/20 blur-[130px]" />
+  <div
+    className="pointer-events-none absolute inset-0 opacity-[0.035]"
+    style={{
+      backgroundImage: "radial-gradient(#ffffff 0.8px, transparent 0.8px)",
+      backgroundSize: "24px 24px",
+    }}
+  />
 
-        <div className="relative mx-auto grid w-full max-w-[1440px] items-center gap-10 px-6 sm:px-8 lg:grid-cols-[1fr_auto] lg:px-16">
-          <div>
-            <div className="mb-6 flex items-center gap-4">
-              <span className="h-px w-10 bg-[#C6A15B]" />
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D5B16D] sm:text-xs">
-                Let's Move Forward
-              </p>
-            </div>
+  <div className="relative mx-auto w-full max-w-[1440px] px-6 sm:px-8 lg:px-16">
+    <div className="relative overflow-hidden rounded-[32px] border border-white/15 bg-gradient-to-br from-[#163D32] via-[#102A23] to-[#0B1E19] p-8 shadow-[0_25px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-12 lg:p-16">
+      {/* Decorative Gold Accent Lines */}
+      <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full border border-[#C6A15B]/20" />
+      <div className="pointer-events-none absolute -right-8 -top-8 h-48 w-48 rounded-full border border-[#C6A15B]/15" />
 
-            <h2 className="max-w-3xl font-display text-4xl leading-[1.12] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-              Ready to find the right opportunity?
-            </h2>
-
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/70">
-              Talk to an SSP advisor about your property requirement and explore
-              opportunities that align directly with your wealth goals.
+      <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+        <div>
+          <div className="mb-0 flex items-center gap-3">
+            <span className="flex h-2 w-2 rounded-full bg-[#D5B16D] shadow-[0_0_10px_#D5B16D]" />
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#D5B16D]">
+              Let's Move Forward
             </p>
           </div>
 
-          <Link
-            href="/contact"
-            className="group inline-flex min-h-[56px] items-center justify-center gap-4 rounded-full bg-[#C6A15B] px-8 text-sm font-semibold text-[#163D32] shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white"
-          >
-            <span>Talk to Our Team</span>
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#163D32] text-white transition-all duration-300 group-hover:rotate-45">
-              <ArrowUpRight size={17} />
+          <h2 className="max-w-2xl font-display text-4xl font-medium leading-[1.08] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+            Ready to find the right{" "}
+            <span className="bg-gradient-to-r from-[#EED49B] via-[#D5B16D] to-[#C6A15B] bg-clip-text text-transparent">
+              opportunity?
             </span>
-          </Link>
+          </h2>
+
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+            Talk to an SSP advisor about your property requirement and explore
+            opportunities that align directly with your wealth goals.
+          </p>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-[3px] w-1/4 bg-[#C6A15B]" />
-      </section>
+        <Link
+          href="/contact"
+          className="group relative inline-flex min-h-[60px] items-center justify-center gap-4 rounded-full bg-[#C6A15B] px-8 text-sm font-bold tracking-wide text-[#163D32] shadow-[0_10px_30px_rgba(198,161,91,0.3)] transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_15px_40px_rgba(255,255,255,0.35)]"
+        >
+          <span>Talk to Our Team</span>
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#163D32] text-white transition-transform duration-300 group-hover:rotate-45">
+            <ArrowUpRight size={18} />
+          </span>
+        </Link>
+      </div>
 
-      {/* ================= CONTACT & ENQUIRY ================= */}
-      <section className="bg-[#F8F6EF] py-24 md:py-32">
-        <div className="mx-auto grid w-full max-w-[1440px] gap-12 px-6 sm:px-8 lg:grid-cols-12 lg:gap-20 lg:px-16">
-          <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
-            <SectionHeading
-              eyebrow="Contact"
-              title="Let's Talk Property"
-              description="Tell us what you are looking for. Share your requirement with our team and take the next step towards the right property opportunity."
-            />
-
-            <div className="mt-10 rounded-2xl border border-[#163D32]/10 bg-white/70 p-6 backdrop-blur-sm shadow-sm">
-              <p className="font-serif text-xl text-[#163D32]">
-                Your property journey starts here.
-              </p>
-              <p className="mt-2 text-sm leading-6 text-[#616B64]">
-                Share your property requirements through the enquiry form to get started.
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 rounded-3xl border border-[#163D32]/10 bg-white p-6 shadow-[0_20px_60px_rgba(22,61,50,0.06)] sm:p-10">
-            <EnquiryForm />
-          </div>
-        </div>
-      </section>
+      {/* Bottom Subtle Gold Accent Line */}
+      <div className="absolute bottom-0 left-0 h-[3px] w-full bg-gradient-to-r from-[#C6A15B] via-[#D5B16D] to-transparent opacity-80" />
+    </div>
+  </div>
+</section>
     </div>
   );
 }

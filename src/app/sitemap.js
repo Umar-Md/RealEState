@@ -5,6 +5,10 @@ export default function sitemap() {
   const paths = [
     "",
     "/about",
+    "/about/vision-mission",
+    "/about/strategic-approach",
+    "/about/story-journey",
+    "/about/leadership-management",
     "/solutions",
     "/solutions/realty",
     "/solutions/properties",

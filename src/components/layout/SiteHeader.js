@@ -15,10 +15,6 @@ import {
   House,
   TrendingUp,
   Landmark,
-  Search,
-  User,
-  Sparkles,
-  PhoneCall,
 } from "lucide-react";
 
 const divisions = [
@@ -63,7 +59,6 @@ export default function SiteHeader() {
   const pathname = usePathname();
 
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [divisionsOpen, setDivisionsOpen] = useState(false);
 
   const phone = process.env.NEXT_PUBLIC_COMPANY_PHONE;
@@ -81,20 +76,6 @@ export default function SiteHeader() {
     setOpen(false);
     setDivisionsOpen(false);
   };
-
-  // SCROLL DETECTION
-  useEffect(() => {
-    const updateScroll = () => {
-      setScrolled(window.scrollY > 30);
-    };
-
-    updateScroll();
-
-    window.addEventListener("scroll", updateScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", updateScroll);
-    };
-  }, []);
 
   // ESCAPE AND RESIZE
   useEffect(() => {
@@ -141,167 +122,55 @@ export default function SiteHeader() {
   // SHARED NAV LINK STYLE
   const desktopLinkClass = (active) =>
     `group relative px-3 py-2 text-[13px] font-semibold tracking-wide transition-colors duration-200 ${
-      active ? "text-[#163D32]" : "text-[#343A36] hover:text-[#163D32]"
+      active ? "text-[#D5B16D]" : "text-white hover:text-[#D5B16D]"
     }`;
 
   return (
     <header className="fixed inset-x-0 top-0 z-[100] w-full">
-      {/* ------------------------------------------------------------- */}
-      {/* 1. MOBILE TOP NAVIGATION BAR (DOCK UI WITH CURVED CUTOUT)     */}
-      {/* ------------------------------------------------------------- */}
-      <div className="relative z-[100] w-full px-4 pt-3 xl:hidden">
-        <div className="relative mx-auto max-w-md shadow-2xl">
-          <div className="absolute inset-0 -z-10 h-[64px] w-full filter drop-shadow-md">
-            <svg
-              className="h-full w-full text-[#102A23]"
-              viewBox="0 0 375 64"
-              preserveAspectRatio="none"
-              fill="currentColor"
-            >
-              <path d="M 0 0 H 375 V 64 H 235 C 220 64 210 24 187.5 24 C 165 24 155 64 140 64 H 0 Z" />
-            </svg>
-          </div>
-
-          <div className="relative flex h-[64px] items-center justify-between px-5 text-white">
-            <div className="flex items-center gap-5">
-              <Link
-                href="/"
-                onClick={closeMenu}
-                className="flex flex-col items-center gap-0.5 text-white/85 transition-colors hover:text-[#D5B16D]"
-              >
-                <House size={18} />
-                <span className="text-[9px] font-medium uppercase tracking-wider">
-                  Home
-                </span>
-              </Link>
-
-              <Link
-                href="/solutions"
-                onClick={closeMenu}
-                className="flex flex-col items-center gap-0.5 text-white/85 transition-colors hover:text-[#D5B16D]"
-              >
-                <Search size={18} />
-                <span className="text-[9px] font-medium uppercase tracking-wider">
-                  Search
-                </span>
-              </Link>
-            </div>
-
-            <div className="absolute left-1/2 top-4 -translate-x-1/2">
-              <button
-                type="button"
-                onClick={() => setOpen((prev) => !prev)}
-                aria-label={open ? "Close menu" : "Open menu"}
-                aria-expanded={open}
-                aria-controls="mobile-navigation"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-[#102A23] text-white shadow-lg transition-transform duration-200 active:scale-95 border-2 border-[#D5B16D]/30"
-              >
-                {open ? (
-                  <X size={22} className="text-[#D5B16D]" />
-                ) : (
-                  <Menu size={22} className="text-[#D5B16D]" />
-                )}
-              </button>
-            </div>
-
-            <div className="flex items-center gap-5">
-              <Link
-                href="/contact"
-                onClick={closeMenu}
-                className="flex flex-col items-center gap-0.5 text-white/85 transition-colors hover:text-[#D5B16D]"
-              >
-                <User size={18} />
-                <span className="text-[9px] font-medium uppercase tracking-wider">
-                  Contact
-                </span>
-              </Link>
-
-              <a
-                href={phone ? `tel:${phone}` : "/contact"}
-                className="flex flex-col items-center gap-0.5 text-white/85 transition-colors hover:text-[#D5B16D]"
-              >
-                <Phone size={18} />
-                <span className="text-[9px] font-medium uppercase tracking-wider">
-                  Call
-                </span>
-              </a>
-            </div>
-          </div>
+      {/* Mobile navigation */}
+      <div className="relative z-[100] flex h-20 w-full items-center justify-between gap-4 border-b border-white/15 bg-[#102A23]/80 px-5 text-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl backdrop-saturate-150 sm:px-8 xl:hidden">
+        <Link href="/" onClick={closeMenu} aria-label="Swayam Sampada Properties Home" className="flex min-w-0 flex-col items-center gap-1">
+          <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/logo-transparent.png`} alt="" width={80} height={38} priority unoptimized className="h-9 w-20 shrink-0 object-contain" />
+          <span className="text-center text-[9px] font-semibold uppercase leading-tight tracking-[0.14em]">SWAYAM SAMPADA<span className="mt-0.5 block text-[8px] tracking-[0.12em] text-[#D5B16D]">PROPERTIES PVT.LTD</span></span>
+        </Link>
+        <div className="flex shrink-0 items-center gap-2">
+          <a href={phone ? `tel:${phone}` : "/contact"} aria-label="Call our team" className="hidden min-[380px]:flex h-11 w-11 items-center justify-center rounded-full border border-current/25"><Phone size={18} /></a>
+          <button type="button" onClick={() => setOpen((prev) => !prev)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-navigation" className="flex h-11 w-11 items-center justify-center rounded-full border border-current/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D5B16D]">
+            {open ? <X size={23} /> : <Menu size={23} />}
+          </button>
         </div>
       </div>
 
-      {/* ------------------------------------------------------------- */}
-      {/* 2. DESKTOP FLOATING NOTCH BAR & NAVIGATION (NEW UI)            */}
-      {/* ------------------------------------------------------------- */}
-      <div className="hidden xl:block">
-        {/* TOP COMPACT BRAND NOTCH (FLOATING CENTER PILL) */}
-        <div className="pointer-events-none relative z-20 flex justify-center">
-          <div
-            className={`pointer-events-auto flex items-center gap-6 rounded-b-2xl border-x border-b border-[#C6A15B]/30 bg-[#102A23] px-6 py-1.5 text-white shadow-md transition-all duration-300 ${
-              scrolled
-                ? "-translate-y-full opacity-0"
-                : "translate-y-0 opacity-100"
-            }`}
-          >
-            <div className="flex items-center gap-2">
-              <Sparkles size={11} className="text-[#D5B16D]" />
-              <p className="text-[10px] font-semibold tracking-widest text-[#D5B16D]">
-                BUILDING TRUST. CREATING FUTURES.
-              </p>
-            </div>
-
-            <span className="h-3 w-px bg-white/20" />
-
-            <div className="flex items-center gap-4 text-[11px]">
-              <a
-                href={phone ? `tel:${phone}` : "/contact"}
-                className="flex items-center gap-1.5 text-white/80 transition-colors hover:text-[#D5B16D]"
-              >
-                <PhoneCall size={12} className="text-[#D5B16D]" />
-                {phone || "+91 90000 00000"}
-              </a>
-              <a
-                href={email ? `mailto:${email}` : "/contact"}
-                className="flex items-center gap-1.5 text-white/80 transition-colors hover:text-[#D5B16D]"
-              >
-                <Mail size={12} className="text-[#D5B16D]" />
-                {email || "enquiry@swayamsampada.com"}
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* MAIN FLOATING NAV PILL */}
-        <div className="mx-auto max-w-[1360px] px-8 pt-2">
-          <div
-            className={`flex h-[68px] w-full items-center justify-between rounded-full border transition-all duration-300 px-6 ${
-              scrolled
-                ? "border-[#163D32]/15 bg-white/95 shadow-[0_12px_35px_rgba(0,0,0,0.12)] backdrop-blur-md"
-                : "border-white/40 bg-white/80 shadow-[0_6px_25px_rgba(0,0,0,0.05)] backdrop-blur-md"
-            }`}
-          >
+      {/* Desktop navigation */}
+      <div className="hidden w-full border-b border-white/15 bg-[#102A23]/80 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl backdrop-saturate-150 xl:block">
+        <div className="w-full px-8 2xl:px-16">
+          <div className="flex h-24 w-full items-center justify-between gap-8">
             {/* LOGO */}
             <Link
               href="/"
               onClick={closeMenu}
               aria-label="Swayam Sampada Properties Home"
-              className="relative shrink-0 flex items-center"
+              className="relative flex shrink-0 flex-col items-center gap-1"
             >
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/ssp-logo.webp`}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/logo-transparent.png`}
                 alt="Swayam Sampada Properties"
                 width={140}
                 height={140}
                 priority
                 unoptimized
-                className="h-[50px] w-auto object-contain transition-transform duration-300 hover:scale-105"
+                className="h-10 w-24 object-contain transition-transform duration-300 hover:scale-105"
               />
+              <span className="text-center text-[11px] font-semibold leading-tight tracking-[0.14em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
+                SWAYAM SAMPADA
+                <span className="mt-0.5 block text-[9px] tracking-[0.12em] text-[#D5B16D]">PROPERTIES PVT.LTD</span>
+              </span>
             </Link>
 
             {/* DESKTOP NAVIGATION LINKS */}
             <nav
               aria-label="Main navigation"
-              className="flex items-center gap-2 rounded-full bg-[#F8F6EF]/80 px-4 py-1.5 border border-[#163D32]/5"
+              className="flex items-center gap-3 py-1.5 drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
             >
               {navLinks.slice(0, 2).map((link) => {
                 const active = isActive(link.href);
@@ -336,11 +205,11 @@ export default function SiteHeader() {
                   aria-expanded={divisionsOpen}
                   className={`group relative flex items-center gap-1.5 px-3 py-2 text-[13px] font-semibold tracking-wide transition-colors ${
                     divisionsOpen || solutionsActive
-                      ? "text-[#163D32]"
-                      : "text-[#343A36] hover:text-[#163D32]"
+                      ? "text-[#D5B16D]"
+                      : "text-white hover:text-[#D5B16D]"
                   }`}
                 >
-                  Our Divisions
+                  Our Services
                   <ChevronDown
                     size={14}
                     className={`transition-transform duration-200 ${
@@ -511,7 +380,7 @@ export default function SiteHeader() {
                   solutionsActive ? "text-[#A7803E]" : "text-[#163D32]"
                 }`}
               >
-                <span>Our Divisions</span>
+                <span>Our Services</span>
                 <ChevronDown
                   size={19}
                   className={`text-[#A7803E] transition-transform duration-300 ${
