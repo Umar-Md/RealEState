@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -16,6 +15,10 @@ import {
   House,
   TrendingUp,
   Landmark,
+  Search,
+  User,
+  Sparkles,
+  PhoneCall,
 } from "lucide-react";
 
 const divisions = [
@@ -63,8 +66,6 @@ export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [divisionsOpen, setDivisionsOpen] = useState(false);
 
-  const transparent = !scrolled && !open;
-
   const phone = process.env.NEXT_PUBLIC_COMPANY_PHONE;
   const email = process.env.NEXT_PUBLIC_COMPANY_EMAIL;
 
@@ -81,6 +82,7 @@ export default function SiteHeader() {
     setDivisionsOpen(false);
   };
 
+  // SCROLL DETECTION
   useEffect(() => {
     const updateScroll = () => {
       setScrolled(window.scrollY > 30);
@@ -88,27 +90,23 @@ export default function SiteHeader() {
 
     updateScroll();
 
-    window.addEventListener("scroll", updateScroll, {
-      passive: true,
-    });
-
+    window.addEventListener("scroll", updateScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", updateScroll);
     };
   }, []);
 
+  // ESCAPE AND RESIZE
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
-        setOpen(false);
-        setDivisionsOpen(false);
+        closeMenu();
       }
     };
 
     const handleResize = () => {
       if (window.innerWidth >= 1280) {
-        setOpen(false);
-        setDivisionsOpen(false);
+        closeMenu();
       }
     };
 
@@ -121,16 +119,16 @@ export default function SiteHeader() {
     };
   }, []);
 
+  // CLOSE ON ROUTE CHANGE
   useEffect(() => {
-    setOpen(false);
-    setDivisionsOpen(false);
+    closeMenu();
   }, [pathname]);
 
+  // PREVENT BACKGROUND SCROLL
   useEffect(() => {
     if (!open) return;
 
     const wasLocked = document.body.classList.contains("overflow-hidden");
-
     document.body.classList.add("overflow-hidden");
 
     return () => {
@@ -140,323 +138,369 @@ export default function SiteHeader() {
     };
   }, [open]);
 
-  return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        transparent
-          ? "bg-transparent"
-          : "bg-white/95 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-xl"
-      }`}
-    >
-      {/* TOP UTILITY BAR */}
+  // SHARED NAV LINK STYLE
+  const desktopLinkClass = (active) =>
+    `group relative px-3 py-2 text-[13px] font-semibold tracking-wide transition-colors duration-200 ${
+      active ? "text-[#163D32]" : "text-[#343A36] hover:text-[#163D32]"
+    }`;
 
-      <div
-        className={`hidden h-9 border-b lg:block transition-colors duration-300 ${
-          transparent
-            ? "border-white/20 bg-black/15"
-            : "border-[#163D32] bg-[#163D32]"
-        }`}
-      >
-        <div className="mx-auto flex h-full max-w-[1440px] items-center justify-between px-8 xl:px-12">
-          <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#C6A15B]" />
-            <p className="text-[10px] font-medium tracking-[0.12em] text-white/90">
-              BUILDING TRUST. CREATING FUTURES.
-            </p>
+  return (
+    <header className="fixed inset-x-0 top-0 z-[100] w-full">
+      {/* ------------------------------------------------------------- */}
+      {/* 1. MOBILE TOP NAVIGATION BAR (DOCK UI WITH CURVED CUTOUT)     */}
+      {/* ------------------------------------------------------------- */}
+      <div className="relative z-[100] w-full px-4 pt-3 xl:hidden">
+        <div className="relative mx-auto max-w-md shadow-2xl">
+          <div className="absolute inset-0 -z-10 h-[64px] w-full filter drop-shadow-md">
+            <svg
+              className="h-full w-full text-[#102A23]"
+              viewBox="0 0 375 64"
+              preserveAspectRatio="none"
+              fill="currentColor"
+            >
+              <path d="M 0 0 H 375 V 64 H 235 C 220 64 210 24 187.5 24 C 165 24 155 64 140 64 H 0 Z" />
+            </svg>
           </div>
 
-          <div className="flex items-center gap-7 text-[11px] text-white/90">
-            <a
-              href={phone ? `tel:${phone}` : "/contact"}
-              className="flex items-center gap-2 transition-colors hover:text-[#C6A15B]"
-            >
-              <Phone size={13} className="text-[#C6A15B]" />
-              {phone || "Contact our team"}
-            </a>
+          <div className="relative flex h-[64px] items-center justify-between px-5 text-white">
+            <div className="flex items-center gap-5">
+              <Link
+                href="/"
+                onClick={closeMenu}
+                className="flex flex-col items-center gap-0.5 text-white/85 transition-colors hover:text-[#D5B16D]"
+              >
+                <House size={18} />
+                <span className="text-[9px] font-medium uppercase tracking-wider">
+                  Home
+                </span>
+              </Link>
 
-            <span className="h-3 w-px bg-white/25" />
+              <Link
+                href="/solutions"
+                onClick={closeMenu}
+                className="flex flex-col items-center gap-0.5 text-white/85 transition-colors hover:text-[#D5B16D]"
+              >
+                <Search size={18} />
+                <span className="text-[9px] font-medium uppercase tracking-wider">
+                  Search
+                </span>
+              </Link>
+            </div>
 
-            <a
-              href={email ? `mailto:${email}` : "/contact"}
-              className="flex items-center gap-2 transition-colors hover:text-[#C6A15B]"
-            >
-              <Mail size={13} className="text-[#C6A15B]" />
-              {email || "Make an enquiry"}
-            </a>
+            <div className="absolute left-1/2 top-4 -translate-x-1/2">
+              <button
+                type="button"
+                onClick={() => setOpen((prev) => !prev)}
+                aria-label={open ? "Close menu" : "Open menu"}
+                aria-expanded={open}
+                aria-controls="mobile-navigation"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-[#102A23] text-white shadow-lg transition-transform duration-200 active:scale-95 border-2 border-[#D5B16D]/30"
+              >
+                {open ? (
+                  <X size={22} className="text-[#D5B16D]" />
+                ) : (
+                  <Menu size={22} className="text-[#D5B16D]" />
+                )}
+              </button>
+            </div>
+
+            <div className="flex items-center gap-5">
+              <Link
+                href="/contact"
+                onClick={closeMenu}
+                className="flex flex-col items-center gap-0.5 text-white/85 transition-colors hover:text-[#D5B16D]"
+              >
+                <User size={18} />
+                <span className="text-[9px] font-medium uppercase tracking-wider">
+                  Contact
+                </span>
+              </Link>
+
+              <a
+                href={phone ? `tel:${phone}` : "/contact"}
+                className="flex flex-col items-center gap-0.5 text-white/85 transition-colors hover:text-[#D5B16D]"
+              >
+                <Phone size={18} />
+                <span className="text-[9px] font-medium uppercase tracking-wider">
+                  Call
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* MAIN NAVIGATION */}
-
-      <div className="mx-auto flex h-20 w-full max-w-[1440px] items-center justify-between px-5 sm:px-8 xl:px-12">
-        {/* LOGO */}
-
-        <Link
-          href="/"
-          onClick={closeMenu}
-          aria-label="Swayam Sampada Properties Home"
-          className="relative z-50 flex h-full shrink-0 items-center"
-        >
-          <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/ssp-logo.webp`}
-            alt="Swayam Sampada Properties"
-            width={150}
-            height={150}
-            priority
-            unoptimized
-            className="h-[62px] w-auto max-w-[180px] object-contain"
-          />
-        </Link>
-
-        {/* DESKTOP NAVIGATION */}
-
-        <nav
-          aria-label="Main navigation"
-          className="hidden items-center gap-7 xl:flex 2xl:gap-9"
-        >
-          {navLinks.slice(0, 2).map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={isActive(link.href) ? "page" : undefined}
-              className={`group relative py-3 text-[13px] font-semibold tracking-wide transition-colors ${
-                transparent
-                  ? "text-white hover:text-[#C6A15B]"
-                  : "text-[#2B2B2D] hover:text-[#163D32]"
-              }`}
-            >
-              {link.name}
-
-              <span
-                className={`absolute bottom-1 left-0 h-[2px] bg-[#C6A15B] transition-all duration-300 ${
-                  isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
-                }`}
-              />
-            </Link>
-          ))}
-
-          {/* OUR DIVISIONS DROPDOWN */}
-
+      {/* ------------------------------------------------------------- */}
+      {/* 2. DESKTOP FLOATING NOTCH BAR & NAVIGATION (NEW UI)            */}
+      {/* ------------------------------------------------------------- */}
+      <div className="hidden xl:block">
+        {/* TOP COMPACT BRAND NOTCH (FLOATING CENTER PILL) */}
+        <div className="pointer-events-none relative z-20 flex justify-center">
           <div
-            className="relative"
-            onMouseEnter={() => setDivisionsOpen(true)}
-            onMouseLeave={() => setDivisionsOpen(false)}
+            className={`pointer-events-auto flex items-center gap-6 rounded-b-2xl border-x border-b border-[#C6A15B]/30 bg-[#102A23] px-6 py-1.5 text-white shadow-md transition-all duration-300 ${
+              scrolled
+                ? "-translate-y-full opacity-0"
+                : "translate-y-0 opacity-100"
+            }`}
           >
-            <button
-              type="button"
-              onClick={() => setDivisionsOpen((prev) => !prev)}
-              aria-expanded={divisionsOpen}
-              className={`group flex items-center gap-2 py-3 text-[13px] font-semibold tracking-wide transition-colors ${
-                divisionsOpen || solutionsActive
-                  ? transparent
-                    ? "text-[#C6A15B]"
-                    : "text-[#163D32]"
-                  : transparent
-                    ? "text-white hover:text-[#C6A15B]"
-                    : "text-[#2B2B2D] hover:text-[#163D32]"
-              }`}
-            >
-              Our Divisions
+            <div className="flex items-center gap-2">
+              <Sparkles size={11} className="text-[#D5B16D]" />
+              <p className="text-[10px] font-semibold tracking-widest text-[#D5B16D]">
+                BUILDING TRUST. CREATING FUTURES.
+              </p>
+            </div>
 
-              <ChevronDown
-                size={15}
-                className={`transition-transform duration-200 ${
-                  divisionsOpen ? "rotate-180" : ""
-                }`}
-              />
+            <span className="h-3 w-px bg-white/20" />
 
-              <span
-                className={`absolute bottom-1 left-0 h-[2px] bg-[#C6A15B] transition-all duration-300 ${
-                  solutionsActive || divisionsOpen
-                    ? "w-full"
-                    : "w-0 group-hover:w-full"
-                }`}
-              />
-            </button>
-
-            {/* COMPACT DROPDOWN PANEL */}
-
-            <div
-              className={`absolute left-1/2 top-full z-50 w-[680px] -translate-x-1/2 pt-3 transition-all duration-200 ${
-                divisionsOpen
-                  ? "visible translate-y-0 opacity-100"
-                  : "invisible -translate-y-2 opacity-0"
-              }`}
-            >
-              <div className="overflow-hidden border border-[#C6A15B]/20 bg-white shadow-[0_18px_50px_rgba(0,0,0,0.16)]">
-                {/* DIVISION LINKS */}
-
-                <div className="grid grid-cols-4 gap-1 p-3">
-                  {divisions.map((division) => {
-                    const Icon = division.Icon;
-                    const active = isActive(division.href);
-
-                    return (
-                      <Link
-                        key={division.href}
-                        href={division.href}
-                        onClick={() => setDivisionsOpen(false)}
-                        className={`group flex min-h-[145px] flex-col border border-transparent p-3 transition-all duration-200 hover:border-[#C6A15B]/30 hover:bg-[#F8F6EF] ${
-                          active ? "border-[#C6A15B]/30 bg-[#F8F6EF]" : ""
-                        }`}
-                      >
-                        <div className="mb-2 flex items-center justify-between">
-                          <span className="text-[9px] font-semibold tracking-widest text-[#C6A15B]">
-                            {division.number}
-                          </span>
-
-                          <ArrowUpRight
-                            size={13}
-                            className="text-[#163D32] opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
-                          />
-                        </div>
-
-                        <div className="mb-3 flex h-9 w-9 items-center justify-center bg-[#163D32] text-[#C6A15B] transition-colors duration-200 group-hover:bg-[#C6A15B] group-hover:text-[#163D32]">
-                          <Icon size={18} strokeWidth={1.7} />
-                        </div>
-
-                        <h3 className="mb-1 text-[12px] font-semibold leading-tight text-[#163D32]">
-                          {division.name}
-                        </h3>
-
-                        <p className="text-[10px] leading-[1.5] text-[#2B2B2D]/65">
-                          {division.description}
-                        </p>
-                      </Link>
-                    );
-                  })}
-                </div>
-
-                {/* DROPDOWN FOOTER */}
-
-                <div className="flex items-center justify-between border-t border-[#163D32]/10 bg-[#F8F6EF] px-5 py-3">
-                  <p className="text-[11px] text-[#2B2B2D]/65">
-                    Discover our integrated real estate solutions.
-                  </p>
-
-                  <Link
-                    href="/solutions"
-                    onClick={() => setDivisionsOpen(false)}
-                    className="flex items-center gap-2 text-[11px] font-semibold text-[#163D32] transition-colors hover:text-[#B58B42]"
-                  >
-                    Explore All Solutions
-                    <ArrowUpRight size={13} />
-                  </Link>
-                </div>
-              </div>
+            <div className="flex items-center gap-4 text-[11px]">
+              <a
+                href={phone ? `tel:${phone}` : "/contact"}
+                className="flex items-center gap-1.5 text-white/80 transition-colors hover:text-[#D5B16D]"
+              >
+                <PhoneCall size={12} className="text-[#D5B16D]" />
+                {phone || "+91 90000 00000"}
+              </a>
+              <a
+                href={email ? `mailto:${email}` : "/contact"}
+                className="flex items-center gap-1.5 text-white/80 transition-colors hover:text-[#D5B16D]"
+              >
+                <Mail size={12} className="text-[#D5B16D]" />
+                {email || "enquiry@swayamsampada.com"}
+              </a>
             </div>
           </div>
+        </div>
 
-          {/* REMAINING LINKS */}
-
-          {navLinks.slice(2).map((link) => (
+        {/* MAIN FLOATING NAV PILL */}
+        <div className="mx-auto max-w-[1360px] px-8 pt-2">
+          <div
+            className={`flex h-[68px] w-full items-center justify-between rounded-full border transition-all duration-300 px-6 ${
+              scrolled
+                ? "border-[#163D32]/15 bg-white/95 shadow-[0_12px_35px_rgba(0,0,0,0.12)] backdrop-blur-md"
+                : "border-white/40 bg-white/80 shadow-[0_6px_25px_rgba(0,0,0,0.05)] backdrop-blur-md"
+            }`}
+          >
+            {/* LOGO */}
             <Link
-              key={link.href}
-              href={link.href}
-              aria-current={isActive(link.href) ? "page" : undefined}
-              className={`group relative py-3 text-[13px] font-semibold tracking-wide transition-colors ${
-                transparent
-                  ? "text-white hover:text-[#C6A15B]"
-                  : "text-[#2B2B2D] hover:text-[#163D32]"
-              }`}
+              href="/"
+              onClick={closeMenu}
+              aria-label="Swayam Sampada Properties Home"
+              className="relative shrink-0 flex items-center"
             >
-              {link.name}
-
-              <span
-                className={`absolute bottom-1 left-0 h-[2px] bg-[#C6A15B] transition-all duration-300 ${
-                  isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
-                }`}
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/ssp-logo.webp`}
+                alt="Swayam Sampada Properties"
+                width={140}
+                height={140}
+                priority
+                unoptimized
+                className="h-[50px] w-auto object-contain transition-transform duration-300 hover:scale-105"
               />
             </Link>
-          ))}
-        </nav>
 
-        {/* DESKTOP CTA */}
+            {/* DESKTOP NAVIGATION LINKS */}
+            <nav
+              aria-label="Main navigation"
+              className="flex items-center gap-2 rounded-full bg-[#F8F6EF]/80 px-4 py-1.5 border border-[#163D32]/5"
+            >
+              {navLinks.slice(0, 2).map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={desktopLinkClass(active)}
+                  >
+                    {link.name}
+                    <span
+                      className={`absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-[#A7803E] transition-all duration-300 ${
+                        active
+                          ? "opacity-100 scale-x-100"
+                          : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
+                      }`}
+                    />
+                  </Link>
+                );
+              })}
 
-        <Link
-          href="/contact"
-          className="group hidden min-h-11 items-center gap-3 rounded-full bg-[#C6A15B] py-1.5 pl-6 pr-1.5 text-[12px] font-bold tracking-wide text-[#163D32] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C6A15B] xl:inline-flex"
-        >
-          <span>Contact Us</span>
+              {/* OUR DIVISIONS MEGAMENU DROPDOWN */}
+              <div
+                className="relative"
+                onMouseEnter={() => setDivisionsOpen(true)}
+                onMouseLeave={() => setDivisionsOpen(false)}
+              >
+                <button
+                  type="button"
+                  onClick={() => setDivisionsOpen((prev) => !prev)}
+                  aria-expanded={divisionsOpen}
+                  className={`group relative flex items-center gap-1.5 px-3 py-2 text-[13px] font-semibold tracking-wide transition-colors ${
+                    divisionsOpen || solutionsActive
+                      ? "text-[#163D32]"
+                      : "text-[#343A36] hover:text-[#163D32]"
+                  }`}
+                >
+                  Our Divisions
+                  <ChevronDown
+                    size={14}
+                    className={`transition-transform duration-200 ${
+                      divisionsOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                  <span
+                    className={`absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-[#A7803E] transition-all duration-300 ${
+                      solutionsActive || divisionsOpen
+                        ? "opacity-100 scale-x-100"
+                        : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
+                    }`}
+                  />
+                </button>
 
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#163D32] text-white transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#C6A15B] group-hover:text-[#163D32]">
-            <ArrowUpRight size={17} />
-          </span>
-        </Link>
+                {/* DROPDOWN MENU */}
+                <div
+                  className={`absolute left-1/2 top-full z-[120] w-[640px] -translate-x-1/2 pt-4 transition-all duration-200 ${
+                    divisionsOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible -translate-y-2 opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden rounded-2xl border border-[#C6A15B]/30 bg-white p-2 shadow-[0_20px_50px_rgba(0,0,0,0.18)]">
+                    <div className="grid grid-cols-2 gap-2 p-2">
+                      {divisions.map((division) => {
+                        const Icon = division.Icon;
+                        const active = isActive(division.href);
 
-        {/* MOBILE MENU BUTTON */}
+                        return (
+                          <Link
+                            key={division.href}
+                            href={division.href}
+                            onClick={() => setDivisionsOpen(false)}
+                            className={`group flex items-start gap-3 rounded-xl border border-transparent p-3 transition-all duration-200 hover:border-[#C6A15B]/40 hover:bg-[#F8F6EF] ${
+                              active ? "border-[#C6A15B]/40 bg-[#F8F6EF]" : ""
+                            }`}
+                          >
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#102A23] text-[#D5B16D] transition-colors duration-200 group-hover:bg-[#C6A15B] group-hover:text-[#102A23]">
+                              <Icon size={20} strokeWidth={1.7} />
+                            </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="mobile-navigation"
-          className={`relative z-50 flex h-11 w-11 items-center justify-center border transition-all duration-300 xl:hidden ${
-            transparent
-              ? "border-white/40 text-white hover:bg-white/10"
-              : "border-[#163D32]/15 text-[#163D32] hover:bg-[#F8F6EF]"
-          }`}
-        >
-          {open ? (
-            <X size={23} strokeWidth={1.7} />
-          ) : (
-            <Menu size={23} strokeWidth={1.7} />
-          )}
-        </button>
+                            <div className="flex flex-col justify-between">
+                              <div className="flex items-center justify-between">
+                                <h3 className="text-[13px] font-bold text-[#163D32]">
+                                  {division.name}
+                                </h3>
+                                <ArrowUpRight
+                                  size={13}
+                                  className="text-[#A7803E] opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+                                />
+                              </div>
+                              <p className="mt-1 text-[11px] leading-relaxed text-[#515852]">
+                                {division.description}
+                              </p>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+
+                    <div className="mt-1 flex items-center justify-between rounded-xl bg-[#102A23] px-4 py-3 text-[#F8F6EF]">
+                      <p className="text-[11px] font-medium text-white/80">
+                        Explore our complete ecosystem of solutions.
+                      </p>
+                      <Link
+                        href="/solutions"
+                        onClick={() => setDivisionsOpen(false)}
+                        className="flex items-center gap-1.5 rounded-lg bg-[#C6A15B] px-3 py-1.5 text-[11px] font-bold text-[#102A23] transition-colors hover:bg-white"
+                      >
+                        Explore All
+                        <ArrowUpRight size={13} />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {navLinks.slice(2).map((link) => {
+                const active = isActive(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={desktopLinkClass(active)}
+                  >
+                    {link.name}
+                    <span
+                      className={`absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-[#A7803E] transition-all duration-300 ${
+                        active
+                          ? "opacity-100 scale-x-100"
+                          : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
+                      }`}
+                    />
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* ACTION CTA BUTTONS */}
+            <div className="flex items-center gap-3">
+              <Link
+                href="/contact"
+                className="group flex h-10 items-center gap-2 rounded-full bg-[#102A23] px-5 text-[12px] font-bold tracking-wide text-[#D5B16D] shadow-sm transition-all duration-300 hover:bg-[#C6A15B] hover:text-[#102A23] hover:shadow-md"
+              >
+                <span>Book Consultation</span>
+                <ArrowUpRight
+                  size={15}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* MOBILE NAVIGATION */}
-
+      {/* ------------------------------------------------------------- */}
+      {/* 3. MOBILE FULLSCREEN OVERLAY MENU                             */}
+      {/* ------------------------------------------------------------- */}
       <div
         id="mobile-navigation"
         inert={!open}
         aria-hidden={!open}
-        className={`fixed inset-0 z-40 bg-white xl:hidden transition-all duration-300 ${
+        className={`fixed inset-0 z-[90] bg-white transition-all duration-300 xl:hidden ${
           open
             ? "visible translate-x-0 opacity-100"
             : "invisible translate-x-full opacity-0"
         }`}
       >
-        <div className="flex h-full flex-col overflow-y-auto px-6 pb-8 pt-28 sm:px-10">
-          {/* MOBILE INTRO */}
-
+        <div className="flex h-full flex-col overflow-y-auto px-6 pb-8 pt-24 sm:px-10">
           <div className="mb-5 border-b border-[#EAE7DF] pb-6">
-            <p className="mb-2 text-[9px] font-bold tracking-[0.25em] text-[#C6A15B]">
+            <p className="mb-2 text-[9px] font-bold tracking-[0.25em] text-[#A7803E]">
               SWAYAM SAMPADA PROPERTIES
             </p>
-
             <h2 className="font-serif text-3xl leading-tight text-[#163D32]">
               Discover a world of
-              <span className="block italic text-[#C6A15B]">
+              <span className="block italic text-[#A7803E]">
                 possibilities.
               </span>
             </h2>
           </div>
 
           <nav aria-label="Mobile navigation" className="flex flex-col">
-            {/* PRIMARY LINKS */}
-
             {navLinks.slice(0, 2).map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
                 aria-current={isActive(link.href) ? "page" : undefined}
                 onClick={closeMenu}
-                className={`flex items-center justify-between border-b border-[#EAE7DF] py-5 text-[16px] font-semibold transition-colors hover:text-[#C6A15B] ${
-                  isActive(link.href) ? "text-[#C6A15B]" : "text-[#163D32]"
+                className={`flex items-center justify-between border-b border-[#EAE7DF] py-5 text-[16px] font-semibold transition-colors hover:text-[#A7803E] ${
+                  isActive(link.href) ? "text-[#A7803E]" : "text-[#163D32]"
                 }`}
               >
                 <span>{link.name}</span>
-
-                <span className="text-[10px] tracking-widest text-[#C6A15B]">
+                <span className="text-[10px] tracking-widest text-[#A7803E]">
                   0{index + 1}
                 </span>
               </Link>
             ))}
-
-            {/* MOBILE DIVISIONS */}
 
             <div className="border-b border-[#EAE7DF]">
               <button
@@ -464,14 +508,13 @@ export default function SiteHeader() {
                 aria-expanded={divisionsOpen}
                 onClick={() => setDivisionsOpen((value) => !value)}
                 className={`flex w-full items-center justify-between py-5 text-[16px] font-semibold transition-colors ${
-                  solutionsActive ? "text-[#C6A15B]" : "text-[#163D32]"
+                  solutionsActive ? "text-[#A7803E]" : "text-[#163D32]"
                 }`}
               >
                 <span>Our Divisions</span>
-
                 <ChevronDown
                   size={19}
-                  className={`text-[#C6A15B] transition-transform duration-300 ${
+                  className={`text-[#A7803E] transition-transform duration-300 ${
                     divisionsOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -496,18 +539,15 @@ export default function SiteHeader() {
 
                   {divisions.map((item) => {
                     const Icon = item.Icon;
-
                     return (
                       <Link
                         key={item.href}
                         href={item.href}
                         onClick={closeMenu}
-                        className="flex items-center gap-3 border-b border-gray-100 py-4 text-sm text-[#163D32] transition-colors hover:text-[#C6A15B]"
+                        className="flex items-center gap-3 border-b border-gray-100 py-4 text-sm text-[#163D32] transition-colors hover:text-[#A7803E]"
                       >
-                        <Icon size={17} className="text-[#C6A15B]" />
-
+                        <Icon size={17} className="text-[#A7803E]" />
                         {item.name}
-
                         <ArrowUpRight
                           size={14}
                           className="ml-auto text-gray-400"
@@ -519,28 +559,23 @@ export default function SiteHeader() {
               </div>
             </div>
 
-            {/* REMAINING LINKS */}
-
             {navLinks.slice(2).map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
                 aria-current={isActive(link.href) ? "page" : undefined}
                 onClick={closeMenu}
-                className={`flex items-center justify-between border-b border-[#EAE7DF] py-5 text-[16px] font-semibold transition-colors hover:text-[#C6A15B] ${
-                  isActive(link.href) ? "text-[#C6A15B]" : "text-[#163D32]"
+                className={`flex items-center justify-between border-b border-[#EAE7DF] py-5 text-[16px] font-semibold transition-colors hover:text-[#A7803E] ${
+                  isActive(link.href) ? "text-[#A7803E]" : "text-[#163D32]"
                 }`}
               >
                 <span>{link.name}</span>
-
-                <span className="text-[10px] tracking-widest text-[#C6A15B]">
+                <span className="text-[10px] tracking-widest text-[#A7803E]">
                   0{index + 3}
                 </span>
               </Link>
             ))}
           </nav>
-
-          {/* MOBILE CONTACT CTA */}
 
           <Link
             href="/contact"
@@ -548,16 +583,13 @@ export default function SiteHeader() {
             className="group mt-8 flex min-h-14 w-full items-center justify-between bg-[#C6A15B] px-6 py-3 text-sm font-bold tracking-wide text-[#163D32] transition-all duration-300 hover:bg-[#163D32] hover:text-white"
           >
             <span>Book a Consultation</span>
-
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#163D32] text-white transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#C6A15B] group-hover:text-[#163D32]">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#163D32] text-[#D5B16D] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#C6A15B] group-hover:text-[#163D32]">
               <ArrowUpRight size={18} />
             </span>
           </Link>
 
-          {/* CONTACT DETAILS */}
-
-          <div className="mt-auto space-y-4 border-t border-[#EAE7DF] pt-7 text-xs text-gray-500">
-            <p className="text-[9px] font-bold tracking-[0.2em] text-[#C6A15B]">
+          <div className="mt-auto space-y-4 border-t border-[#EAE7DF] pt-7 text-xs text-[#515852]">
+            <p className="text-[9px] font-bold tracking-[0.2em] text-[#A7803E]">
               GET IN TOUCH
             </p>
 
