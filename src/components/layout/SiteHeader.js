@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -51,7 +51,7 @@ const divisions = [
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Careers", href: "/partner" },
+  { name: "Careers", href: "/careers" },
   { name: "Insights", href: "/insights" },
 ];
 
@@ -72,10 +72,10 @@ export default function SiteHeader() {
 
   const solutionsActive = pathname.startsWith("/solutions");
 
-  const closeMenu = () => {
-    setOpen(false);
-    setDivisionsOpen(false);
-  };
+const closeMenu = useCallback(() => {
+  setOpen(false);
+  setDivisionsOpen(false);
+}, []);
 
   // ESCAPE AND RESIZE
   useEffect(() => {
