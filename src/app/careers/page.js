@@ -1,4 +1,4 @@
-import CareersContent from "./content";
+import CareersContent from "./Content";
 
 export const metadata = {
   title: "Careers | Swayam Sampada Properties",
