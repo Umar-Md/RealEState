@@ -134,7 +134,7 @@ export default function TeamMembers() {
                 >
                   <div className="leadership-photo-wrap">
                     <img
-                      src={member.photo}
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${member.photo}`}
                       alt={member.name}
                       className="leadership-photo"
                     />
