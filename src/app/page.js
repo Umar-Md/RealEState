@@ -20,6 +20,7 @@ import {
 
 import TrustBar from "@/components/common/TrustBar";
 import DivisionCards from "@/components/common/DivisionCards";
+import TeamMembers from "@/components/common/TeamMembers";
 import SectionHeading from "@/components/common/SectionHeading";
 import EnquiryForm from "@/components/forms/EnquiryForm";
 
@@ -489,6 +490,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ================= TEAM MEMBERS ================= */}
+      <TeamMembers />
 
       {/* ================= CALL TO ACTION (CTA) ================= */}
      <section className="relative isolate overflow-hidden bg-[#102A23] pb-16 pt-6 text-white md:pb-24 md:pt-8">
