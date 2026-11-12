@@ -141,7 +141,7 @@ export default function HomePage() {
               {/* Action Buttons */}
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <Link
-                  href="/contact"
+                  href="/booking"
                   className="group relative inline-flex min-h-[58px] items-center justify-center gap-4 overflow-hidden rounded-full bg-[#C6A15B] px-8 text-sm font-semibold tracking-wide text-[#163D32] shadow-[0_10px_30px_rgba(198,161,91,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_15px_35px_rgba(255,255,255,0.3)]"
                 >
                   <span>Book a Free Consultation</span>

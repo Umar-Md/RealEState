@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
+import { companyContact } from "@/data/contactData";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -62,7 +63,7 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [divisionsOpen, setDivisionsOpen] = useState(false);
 
-  const phone = process.env.NEXT_PUBLIC_COMPANY_PHONE;
+  const phone = process.env.NEXT_PUBLIC_COMPANY_PHONE || companyContact.telephone;
   const email = process.env.NEXT_PUBLIC_COMPANY_EMAIL;
 
   const isActive = (href) => {
@@ -314,7 +315,7 @@ const closeMenu = useCallback(() => {
             {/* ACTION CTA BUTTONS */}
             <div className="flex items-center gap-3">
               <Link
-                href="/contact"
+                href="/booking"
                 className="group flex h-10 items-center gap-2 rounded-full bg-[#102A23] px-5 text-[12px] font-bold tracking-wide text-[#D5B16D] shadow-sm transition-all duration-300 hover:bg-[#C6A15B] hover:text-[#102A23] hover:shadow-md"
               >
                 <span>Book Consultation</span>
@@ -448,7 +449,7 @@ const closeMenu = useCallback(() => {
           </nav>
 
           <Link
-            href="/contact"
+            href="/booking"
             onClick={closeMenu}
             className="group mt-8 flex min-h-14 w-full items-center justify-between bg-[#C6A15B] px-6 py-3 text-sm font-bold tracking-wide text-[#163D32] transition-all duration-300 hover:bg-[#163D32] hover:text-white"
           >

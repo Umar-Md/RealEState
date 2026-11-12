@@ -1,5 +1,7 @@
 import PageHero from "@/components/common/PageHero";
 import SectionHeading from "@/components/common/SectionHeading";
+import Link from "next/link";
+import { projectsData } from "@/data/projectsData";
 const types = [
   [
     "Residential homes",
@@ -50,11 +52,11 @@ export default function Properties() {
               </div>
             ))}
           </div>
-          <div className="mt-12 bg-ssp-cream p-6 text-sm text-gray-600">
-            Featured property listings will be added only after the client
-            supplies verified listings, approved images, prices, availability
-            and applicable approval details. No sample listing is represented as
-            an SSP property.
+          <div className="mt-12 border border-ssp-green/15 bg-ssp-cream p-6 sm:p-8">
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ssp-green">Featured project</p>
+            <h3 className="mt-3 font-display text-2xl text-ssp-dark">{projectsData[0].title}</h3>
+            <p className="mt-3 text-sm leading-7 text-gray-600">{projectsData[0].subtitle}</p>
+            <Link href="/projects" className="mt-5 inline-flex min-h-11 items-center text-sm font-bold text-ssp-green underline decoration-ssp-gold underline-offset-4 hover:decoration-ssp-green">Explore project details →</Link>
           </div>
         </div>
       </section>

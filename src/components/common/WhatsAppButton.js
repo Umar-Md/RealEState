@@ -1,4 +1,6 @@
-const defaultPhone = "919989663776";
+import { companyContact } from "@/data/contactData";
+
+const defaultPhone = companyContact.whatsappNumber;
 const message = "Hello SSP, I would like to know more about your property services.";
 
 export default function WhatsAppButton() {
