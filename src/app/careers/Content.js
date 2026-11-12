@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { companyContact } from "@/data/contactData";
 
 import {
   ArrowRight,
@@ -29,7 +30,7 @@ import {
 
 const EMAIL = "info@bsomconsults.com";
 
-const WHATSAPP = "919989663776";
+const WHATSAPP = companyContact.whatsappNumber;
 
 // Add your Google Form URL here whenever it is ready.
 
@@ -1151,7 +1152,7 @@ export default function CareersContent() {
                     Apply via WhatsApp
                   </h3>
 
-                  <p className="mt-1 text-sm text-gray-500">+91 99896 63776</p>
+                  <p className="mt-1 text-sm text-gray-500">+91 {companyContact.phone}</p>
                 </div>
 
                 <ArrowUpRight

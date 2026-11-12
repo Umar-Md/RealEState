@@ -1,4 +1,4 @@
-import { companyContact } from '../../data/contactData';
+import { bookingContact } from '../../data/contactData';
 import Image from 'next/image';
 import CalBooking from '../../components/booking/CalBooking';
 import { CAL_IS_CONFIGURED } from '../../lib/cal-embed';
@@ -27,8 +27,8 @@ export default function BookingPage() {
             <div className="mt-7 border-t border-white/15 pt-6">
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ssp-gold">Your contact</p>
               <h3 className="mt-2 text-xl font-semibold">Satish Reddy</h3>
-              <a href={`tel:${companyContact.telephone}`} className="mt-3 inline-flex min-h-11 items-center text-base text-white underline decoration-ssp-gold underline-offset-4 hover:text-ssp-gold">{companyContact.phone}</a>
-              <a href={companyContact.whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-2 flex min-h-11 items-center justify-center rounded-full border border-ssp-gold/50 px-4 py-2 text-sm font-semibold text-ssp-gold transition-colors hover:bg-ssp-gold hover:text-ssp-green">Chat on WhatsApp</a>
+              <a href={`tel:${bookingContact.telephone}`} className="mt-3 inline-flex min-h-11 items-center text-base text-white underline decoration-ssp-gold underline-offset-4 hover:text-ssp-gold">{bookingContact.phone}</a>
+              <a href={bookingContact.whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-2 flex min-h-11 items-center justify-center rounded-full border border-ssp-gold/50 px-4 py-2 text-sm font-semibold text-ssp-gold transition-colors hover:bg-ssp-gold hover:text-ssp-green">Chat on WhatsApp</a>
               <p className="mt-5 text-sm leading-7 text-white/75">Discuss residential and commercial properties, open plots, and your real estate requirements with our team.</p>
             </div>
             <p className="mt-7 text-xs leading-6 text-ssp-gold">Connecting Properties. Creating Assets. Building Wealth.</p>
