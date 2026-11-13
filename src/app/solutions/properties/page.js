@@ -55,7 +55,7 @@ export default function Properties() {
           <div className="mt-12 border border-ssp-green/15 bg-ssp-cream p-6 sm:p-8">
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ssp-green">Featured project</p>
             <h3 className="mt-3 font-display text-2xl text-ssp-dark">{projectsData[0].title}</h3>
-            <p className="mt-3 text-sm leading-7 text-gray-600">{projectsData[0].subtitle}</p>
+            <p className="mt-3 text-sm leading-7 text-gray-600">{projectsData[0].description}</p>
             <Link href="/projects" className="mt-5 inline-flex min-h-11 items-center text-sm font-bold text-ssp-green underline decoration-ssp-gold underline-offset-4 hover:decoration-ssp-green">Explore project details →</Link>
           </div>
         </div>

@@ -1,9 +1,9 @@
 import ProjectsSection from '../../components/ProjectsSection';
 
 export const metadata = {
-  title: 'Projects | Central Park Venture',
+  title: 'My Projects | Swayam Sampada Properties',
   description:
-    'Discover Central Park residential open plots in Zaheerabad with Swayam Sampada Properties. Explore the project overview, development partners, and regional growth context.',
+    'Explore Central Park, a residential plotted township, and a separate NIMZ Zaheerabad industrial development overview.',
   alternates: {
     canonical: '/projects',
   },

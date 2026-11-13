@@ -1,58 +1,44 @@
-﻿import Link from 'next/link';
-import { projectsData } from '../data/projectsData';
-import PageHero from './common/PageHero';
-import SectionHeading from './common/SectionHeading';
-import { PartnerCards, ProjectNavigation } from './CentralParkShared';
-
-const project = projectsData[0];
-const details = [
-  ['Property type', project.category],
-  ['Location', project.location],
-  ['Project period', project.timeline],
-  ['Intended audience', project.audience],
-];
+import Link from 'next/link';
+import { ArrowDown } from 'lucide-react';
+import { projectsData } from '@/data/projectsData';
+import ProjectCard from '@/components/projects/ProjectCard';
 
 export default function ProjectsSection() {
   return (
     <>
-      <PageHero eyebrow="SSP PROPERTIES · FEATURED PROJECT" title={project.title}
-        description={project.subtitle} cta="Explore project facts" ctaHref="/projects/concept-note" />
-      <div className="bg-ssp-cream text-ssp-dark">
-        <div className="mx-auto max-w-[1280px] px-5 py-10 sm:px-8 lg:px-12">
-          <ProjectNavigation />
-          <section className="grid gap-8 py-14 lg:grid-cols-[1.4fr_1fr] lg:gap-16 lg:py-20" aria-label="Project introduction">
-            <div>
-              <SectionHeading eyebrow="RESIDENTIAL OPEN PLOTS" title="Explore the place. Understand the opportunity." />
-              <p className="mt-6 text-base leading-8 text-gray-600">{project.summary}</p>
-              <Link href="/projects/concept-note" className="mt-6 inline-flex min-h-11 items-center text-sm font-bold text-ssp-green underline decoration-ssp-gold underline-offset-4 hover:decoration-ssp-green">Read the project concept & regional growth facts →</Link>
-            </div>
-            <aside className="self-start border border-ssp-green/15 bg-white p-6 sm:p-8" aria-label="Project details">
-              <h2 className="font-display text-2xl">Project details</h2>
-              <dl className="mt-5 divide-y divide-ssp-green/15">
-                {details.map(([label, value]) => (
-                  <div key={label} className="py-4">
-                    <dt className="text-[11px] font-bold uppercase tracking-[0.16em] text-ssp-green">{label}</dt>
-                    <dd className="mt-2 text-sm leading-7 text-gray-600">{value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </aside>
-          </section>
-        </div>
-      </div>
-      <section className="py-16 lg:py-24" aria-label="Project context">
-        <div className="mx-auto grid max-w-[1280px] gap-8 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12">
-          <SectionHeading eyebrow="LOCATION & GROWTH CONTEXT" title="A project within a changing region" />
-          <div className="text-base leading-8 text-gray-600">
-            <p>{project.context}</p>
-            <p className="mt-5">{project.outlook}</p>
-          </div>
+      <section className="relative overflow-hidden bg-ssp-green pb-16 pt-36 text-white sm:pb-20 lg:pb-24">
+        <div className="absolute -right-24 -top-32 h-96 w-96 rounded-full border border-white/10" aria-hidden="true" />
+        <div className="absolute -right-8 -top-16 h-64 w-64 rounded-full border border-ssp-gold/30" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
+          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-ssp-gold">
+            SWAYAM SAMPADA PROPERTIES · PROJECT PORTFOLIO
+          </p>
+          <h1 className="mt-5 max-w-4xl font-display text-4xl leading-tight sm:text-5xl lg:text-6xl">
+            Two distinct opportunities. One considered portfolio.
+          </h1>
+          <p className="mt-6 max-w-2xl text-sm leading-7 text-white/75 sm:text-base">
+            Explore a residential plotted township and a separate industrial development overview in Telangana.
+          </p>
+          <Link href="#featured-projects" className="mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-white underline decoration-ssp-gold underline-offset-4 hover:text-ssp-gold">
+            Explore projects <ArrowDown size={16} aria-hidden="true" />
+          </Link>
         </div>
       </section>
-      <section className="bg-ssp-cream py-16 lg:py-24" aria-label="Project partners">
+
+      <section id="featured-projects" className="scroll-mt-24 bg-ssp-cream py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
-          <SectionHeading eyebrow="PROJECT PARTNERS" title="The team behind Central Park" />
-          <PartnerCards />
+          <div className="mb-10 flex flex-col gap-5 md:mb-12 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-ssp-green">MY PROJECTS</p>
+              <h2 className="mt-3 font-display text-3xl text-ssp-dark sm:text-4xl">Explore our projects</h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-gray-600">
+              Each project has its own details, imagery and enquiry path. Regional industrial context is kept separate from Central Park’s residential project information.
+            </p>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+            {projectsData.map((project) => <ProjectCard key={project.id} project={project} />)}
+          </div>
         </div>
       </section>
     </>

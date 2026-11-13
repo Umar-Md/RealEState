@@ -8,6 +8,8 @@ const interestOptions = [
   "SSP Realty – Buy / Sell",
   "SSP Properties – Residential",
   "Open Plots & Land",
+  "Central Park — Residential Plotted Township",
+  "NIMZ Zaheerabad — Industrial Development",
   "Commercial Offices",
   "Retail",
   "SSP Wealth – Investment Advisory",
@@ -15,12 +17,12 @@ const interestOptions = [
   "Partner with SSP",
 ];
 
-export default function EnquiryForm({ partner = false }) {
+export default function EnquiryForm({ partner = false, projectName = "", projectInterest = "" }) {
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
-    interest: "",
+    interest: projectInterest,
     location: "",
     budget: "",
     message: "",
@@ -69,13 +71,15 @@ export default function EnquiryForm({ partner = false }) {
         <div className="mb-3 flex items-center gap-3">
           <span className="h-px w-8 bg-[#C6A15B]" />
           <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#163D32]">
-            {partner ? "Partnership Enquiry" : "Let's Get Started"}
+            {partner ? "Partnership Enquiry" : projectName ? `${projectName} Enquiry` : "Let's Get Started"}
           </span>
         </div>
 
         <h3 className="font-serif text-2xl leading-tight text-[#163D32] sm:text-3xl">
           {partner
             ? "Build opportunities with us."
+            : projectName
+              ? `Tell us about your interest in ${projectName}.`
             : "Tell us what you're looking for."}
         </h3>
 

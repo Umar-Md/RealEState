@@ -1,3 +1,5 @@
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js';
+
 const nextConfig = {
   output: "export",
   trailingSlash: true,
@@ -7,4 +9,8 @@ const nextConfig = {
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
   },
 };
-export default nextConfig;
+// Keep production builds from replacing chunks used by a running dev server.
+export default (phase) => ({
+  ...nextConfig,
+  distDir: phase === PHASE_DEVELOPMENT_SERVER ? '.next-dev' : '.next',
+});
