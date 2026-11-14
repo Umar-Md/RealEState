@@ -8,7 +8,7 @@ export const metadata = {
   title: 'Property & Regional Growth Insights',
   description: 'Explore practical guides to NH-65 connectivity, NIMZ Zaheerabad, plot buying and residential layouts. Discover Central Park at Kohir X Roads.',
   alternates: { canonical: '/insights' },
-  openGraph: { title: 'SSP Insights — Understand the Locations. Discover the Opportunities.', description: 'A thoughtful starting point for property decisions around Kohir, NH-65 and Zaheerabad.', url: '/insights', images: [{ url: '/images/CentralPark.jpeg', alt: 'Central Park site at Kohir X Roads' }] },
+  openGraph: { title: 'SSP Insights — Understand the Locations. Discover the Opportunities.', description: 'A thoughtful starting point for property decisions around Kohir, NH-65 and Zaheerabad.', url: '/insights', images: [{ url: '/images/CentralPark.png', alt: 'Central Park site at Kohir X Roads' }] },
 };
 
 const resources = [

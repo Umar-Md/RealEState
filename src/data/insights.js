@@ -4,7 +4,7 @@ export const insightCategories = [
   { id: 'location', name: 'Location & Connectivity', description: 'Look beyond the pin. Understand access, surroundings and everyday journeys.', image: '/images/Home Page.jpeg', alt: 'Regional landscape from the SSP image collection' },
   { id: 'industrial', name: 'Industrial Growth & NIMZ', description: 'Read the regional story with a clear distinction between plans and delivery.', image: '/images/nimz-1.jpeg', alt: 'Illustration of industrial development around NIMZ Zaheerabad' },
   { id: 'investment', name: 'Real Estate Investment', description: 'Better questions about documents, approvals and the decision to buy.', image: architecture('photo-1460925895917-afdab827c52f'), alt: 'Illustrative workspace for property research and financial planning' },
-  { id: 'lifestyle', name: 'Township & Lifestyle', description: 'Understand the roads, open spaces and services behind a liveable layout.', image: '/images/CentralPark.jpeg', alt: 'Central Park site at Kohir X Roads' },
+  { id: 'lifestyle', name: 'Township & Lifestyle', description: 'Understand the roads, open spaces and services behind a liveable layout.', image: '/images/CentralPark.png', alt: 'Central Park site at Kohir X Roads' },
 ];
 
 export const insightSources = {

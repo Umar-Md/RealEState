@@ -33,7 +33,7 @@ export default function ProjectCard({ project, featured = false }) {
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#B48A42]" />
             {featured ? 'Flagship residential project' : 'Regional perspective'}
           </p>
-          <h3 className={`mt-4 font-['Palatino_Linotype',Palatino,serif] leading-[1.08] tracking-tight ${featured ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'}`}>
+          <h3 className={`mt-4 font-display leading-[1.08] tracking-tight ${featured ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'}`}>
             <Link href={project.href} className="decoration-[#C6A15B] underline-offset-8 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C6A15B]">{project.title}</Link>
           </h3>
           <p className="mt-4 flex items-start gap-2 text-sm leading-6 text-[#59645D] dark:text-[#C0CCC4]">

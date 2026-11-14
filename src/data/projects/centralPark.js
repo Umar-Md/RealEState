@@ -7,8 +7,12 @@ export const centralParkProject = {
   "location": "Kohir X Roads, NH-65, Telangana",
   "href": "/projects/central-park",
   "enquiryInterest": "Central Park — Residential Plotted Township",
-  "cover": {
+  "hero": {
     "src": "/images/CentralPark.jpeg",
+    "alt": "Aerial view of Central Park showing plotted land and internal roads at Kohir X Roads, Telangana."
+  },
+  "cover": {
+    "src": "/images/CentralPark.png",
     "alt": "Central Park site at Kohir X Roads, Telangana.",
     "caption": "Central Park site image"
   },

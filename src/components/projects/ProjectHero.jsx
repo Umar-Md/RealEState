@@ -5,11 +5,13 @@ import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
 import ProjectBadge from './ProjectBadge';
 
 export default function ProjectHero({ project }) {
+  const heroImage = project.hero || project.cover;
+
   return (
     <section className="relative isolate min-h-[740px] overflow-hidden bg-[#10251F] text-white lg:min-h-[850px]">
       <Image
-        src={getProjectImageSrc(project.cover.src)}
-        alt={project.cover.alt || project.title}
+        src={getProjectImageSrc(heroImage.src)}
+        alt={heroImage.alt || project.title}
         fill
         priority
         sizes="100vw"

@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-[#F7F5EF] font-['Trebuchet_MS',sans-serif] text-[#173D33] dark:bg-[#0D1F1A] dark:text-[#F7F5EF]">
+    <div className="min-h-screen bg-[#F7F5EF] font-sans text-[#173D33] dark:bg-[#0D1F1A] dark:text-[#F7F5EF]">
       <ProjectsSection />
     </div>
   );
