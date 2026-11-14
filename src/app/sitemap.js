@@ -1,3 +1,5 @@
+import { insights } from '@/data/insights';
+
 export const dynamic = "force-static";
 
 export default function sitemap() {
@@ -25,8 +27,11 @@ export default function sitemap() {
     "/privacy-policy",
     "/terms",
   ];
-  return paths.map((path) => ({
+  return [...paths.map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
-  }));
+  })), ...insights.map((article) => ({
+    url: `${base}/insights/${article.slug}`,
+    lastModified: new Date(`${article.updated}T09:00:00+05:30`),
+  }))];
 }

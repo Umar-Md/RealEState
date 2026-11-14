@@ -1,4 +1,4 @@
-/** Responsive local photography; generated sizes avoid external requests and runtime transforms. */
+/** Local photography using the image sizes included in the repository. */
 export default function ArchitecturalImage({
   image,
   priority = false,
@@ -6,11 +6,11 @@ export default function ArchitecturalImage({
   className = "",
 }) {
   const base = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/architecture/${image}`;
+  const width = image === "photo-1497366754035-f200968a6e72" ? 640 : 1920;
 
   return (
     <img
-      src={`${base}-1280.webp`}
-      srcSet={`${base}-640.webp 640w, ${base}-1280.webp 1280w, ${base}-1920.webp 1920w`}
+      src={`${base}-${width}.webp`}
       sizes={sizes}
       alt=""
       aria-hidden="true"

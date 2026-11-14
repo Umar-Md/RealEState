@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getProjectImageSrc } from '@/lib/project-image';
 import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
+import ProjectBadge from './ProjectBadge';
 
 export default function ProjectHero({ project }) {
   return (
@@ -18,16 +19,12 @@ export default function ProjectHero({ project }) {
       <div className="absolute inset-0 bg-gradient-to-r from-[#071812]/95 via-[#10251F]/75 to-[#10251F]/15" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#071812] via-transparent to-[#071812]/30" />
 
-      <div className="pointer-events-none absolute inset-0 opacity-[0.12]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:100px_100px]" />
-      </div>
-
       <div className="relative mx-auto flex min-h-[740px] max-w-[1440px] flex-col justify-end px-5 pb-24 pt-40 sm:px-10 lg:min-h-[850px] lg:px-16 lg:pb-36">
         <div className="max-w-5xl">
-          <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/[0.07] px-4 py-2 backdrop-blur-xl">
-            <span className="h-2 w-2 rounded-full bg-ssp-gold shadow-[0_0_12px_rgba(198,161,91,0.9)]" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-white/85">
-              {project.projectNumber} / {project.category}
+          <div className="mb-8 flex flex-wrap items-center gap-4">
+            <ProjectBadge project={project} plain />
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/85">
+              {project.category}
             </span>
           </div>
 
@@ -71,11 +68,6 @@ export default function ProjectHero({ project }) {
         </div>
       </div>
 
-      {project.cover.caption && (
-        <p className="absolute bottom-5 left-6 text-[10px] text-white/50 sm:left-10 lg:left-16">
-          {project.cover.caption}
-        </p>
-      )}
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import ProjectsSection from '../../components/ProjectsSection';
 
 export const metadata = {
-  title: 'My Projects | Swayam Sampada Properties',
+  title: 'Projects & Places',
   description:
     'Explore Central Park, a residential plotted township, and a separate NIMZ Zaheerabad industrial development overview.',
   alternates: {
@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-[#F8F6EF]">
+    <div className="min-h-screen bg-[#F7F5EF] font-['Trebuchet_MS',sans-serif] text-[#173D33] dark:bg-[#0D1F1A] dark:text-[#F7F5EF]">
       <ProjectsSection />
     </div>
   );

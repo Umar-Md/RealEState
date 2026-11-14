@@ -1,6 +1,5 @@
 export const centralParkProject = {
   "id": "central-park",
-  "projectNumber": "PROJECT 01",
   "title": "Central Park",
   "headline": "90 Acres. 321 Plots. One Growth Corridor.",
   "description": "A DTCP-approved plotted township at Kohir X Roads on NH-65, positioned along the Hyderabad–Zaheerabad industrial growth corridor.",

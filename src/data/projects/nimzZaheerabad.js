@@ -1,6 +1,5 @@
 export const nimzZaheerabadProject = {
   "id": "nimz-zaheerabad",
-  "projectNumber": "PROJECT 02",
   "title": "NIMZ Zaheerabad",
   "fullName": "National Investment and Manufacturing Zone",
   "headline": "Explore Industrial Growth Opportunities Around NIMZ Zaheerabad.",

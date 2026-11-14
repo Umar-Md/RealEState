@@ -3,16 +3,19 @@ import { getProjectImageSrc } from '@/lib/project-image';
 import SectionTitle from './SectionTitle';
 import SectionShell from './SectionShell';
 
-export default function TextSection({ section, index, children }) {
+export default function TextSection({ section, index = 0, children }) {
   const cream = index % 2 === 1;
+  const reversed = index % 2 === 1;
   const hasImage = Boolean(section.image?.src);
 
   return (
     <SectionShell id={section.id} cream={cream}>
       <div className={`mx-auto grid max-w-[1440px] items-start gap-12 px-5 sm:px-10 lg:px-16 ${
-        hasImage ? 'lg:grid-cols-[0.9fr_1.1fr]' : 'lg:grid-cols-[0.8fr_1.2fr]'
+        hasImage
+          ? reversed ? 'lg:grid-cols-[1.1fr_0.9fr]' : 'lg:grid-cols-[0.9fr_1.1fr]'
+          : reversed ? 'lg:grid-cols-[1.2fr_0.8fr]' : 'lg:grid-cols-[0.8fr_1.2fr]'
       } lg:gap-24`}>
-        <div className="lg:sticky lg:top-36">
+        <div className={`min-w-0 lg:sticky lg:top-36 lg:row-start-1 ${reversed ? 'lg:col-start-2' : 'lg:col-start-1'}`}>
           <SectionTitle
             label={section.id.replaceAll('-', ' ')}
             title={section.title}
@@ -20,7 +23,7 @@ export default function TextSection({ section, index, children }) {
           />
         </div>
 
-        <div>
+        <div className={`min-w-0 lg:row-start-1 ${reversed ? 'lg:col-start-1' : 'lg:col-start-2'}`}>
           {hasImage && (
             <div className="group relative mb-10 aspect-[16/10] overflow-hidden rounded-sm">
               <Image

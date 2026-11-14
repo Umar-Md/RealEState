@@ -52,9 +52,9 @@ const divisions = [
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Careers", href: "/careers" },
   { name: "Projects", href: "/projects" },
   { name: "Insights", href: "/insights" },
+  { name: "Careers", href: "/careers" },
 ];
 
 export default function SiteHeader() {

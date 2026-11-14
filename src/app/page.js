@@ -6,6 +6,7 @@ import ArchitecturalImage from "@/components/common/ArchitecturalImage";
 
 import {
   ArrowUpRight,
+  ArrowRight,
   CheckCircle2,
   MapPin,
   Building2,
@@ -75,6 +76,21 @@ const highlights = [
   { label: "End-to-End", sub: "Advisory to Deeds", icon: Award },
 ];
 
+function trackCentralParkHeroClick() {
+  const eventName = "hero_cta_click_central_park";
+  // Analytics must never prevent the project link from opening.
+  try {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, { transport_type: "beacon" });
+    }
+  } catch {}
+  try {
+    if (typeof window.fbq === "function") {
+      window.fbq("trackCustom", eventName);
+    }
+  } catch {}
+}
+
 export default function HomePage() {
   const [activeStep, setActiveStep] = useState(0);
 
@@ -94,7 +110,7 @@ export default function HomePage() {
         />
 
         {/* Ambient Overlay Gradients & Grid Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E19]/95 via-[#102A23]/85 to-[#102A23]/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E19]/90 via-[#102A23]/65 to-[#102A23]/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E19] via-transparent to-black/20" />
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -113,7 +129,7 @@ export default function HomePage() {
             {/* Left Content Area */}
             <div className="lg:col-span-8">
               {/* Eyebrow Badge */}
-              <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-[#C6A15B]/30 bg-[#C6A15B]/10 px-4 py-1.5 backdrop-blur-md">
+              <div className="mb-8 inline-flex items-center gap-3">
                 <Sparkles size={14} className="text-[#D5B16D]" />
                 <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#D5B16D]">
                   Your Real Estate Growth Partner
@@ -138,28 +154,37 @@ export default function HomePage() {
                 infrastructure-linked opportunities across Hyderabad and Telangana.
               </p>
 
-              {/* Action Buttons */}
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Link
-                  href="/booking"
-                  className="group relative inline-flex min-h-[58px] items-center justify-center gap-4 overflow-hidden rounded-full bg-[#C6A15B] px-8 text-sm font-semibold tracking-wide text-[#163D32] shadow-[0_10px_30px_rgba(198,161,91,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_15px_35px_rgba(255,255,255,0.3)]"
-                >
-                  <span>Book a Free Consultation</span>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#163D32] text-white transition-transform duration-300 group-hover:rotate-45">
-                    <ArrowUpRight size={16} />
-                  </span>
-                </Link>
-
-                <Link
-                  href="/solutions"
-                  className="group inline-flex min-h-[58px] items-center justify-center gap-3 rounded-full border border-white/30 bg-white/5 px-8 text-sm font-semibold tracking-wide text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-[#163D32]"
-                >
-                  Explore Our Services
-                  <ArrowUpRight
-                    size={17}
-                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  />
-                </Link>
+              {/* Flagship project action */}
+              <div className="mt-6">
+                <p className="mb-3 flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#D5B16D]">
+                  <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#D5B16D] motion-safe:animate-[pulse_2s_ease-in-out_2]" />
+                  Featured Project: Central Park
+                </p>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+                  <div className="w-full motion-safe:animate-cta-reveal sm:w-auto">
+                  <Link
+                    href="/projects/central-park"
+                    data-cta="hero-central-park"
+                    onClick={trackCentralParkHeroClick}
+                    className="group relative isolate inline-flex min-h-[58px] w-full items-center justify-center gap-4 overflow-hidden rounded-3xl bg-[#C6A15B] px-8 text-sm font-semibold tracking-wide text-[#163D32] shadow-[0_10px_30px_rgba(198,161,91,0.25)] transition-[transform,box-shadow,background-color] duration-300 hover:bg-[#D5B16D] hover:shadow-[0_12px_35px_rgba(198,161,91,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D5B16D] motion-safe:hover:-translate-y-1 motion-safe:focus-visible:-translate-y-1 motion-safe:active:scale-[0.98] motion-reduce:transition-none sm:w-auto"
+                  >
+                    <svg aria-hidden="true" focusable="false" className="pointer-events-none absolute inset-0 h-full w-full motion-reduce:hidden">
+                      <rect x="3" y="3" width="calc(100% - 6px)" height="calc(100% - 6px)" rx="21" fill="none" stroke="#0B4637" strokeWidth="2" />
+                      <rect x="3" y="3" width="calc(100% - 6px)" height="calc(100% - 6px)" rx="21" fill="none" stroke="#063D30" strokeWidth="6" strokeLinecap="round" pathLength="100" strokeDasharray="28 72" className="motion-safe:animate-border-glint" />
+                      <rect x="3" y="3" width="calc(100% - 6px)" height="calc(100% - 6px)" rx="21" fill="none" stroke="#64FFD6" strokeWidth="4" strokeLinecap="round" pathLength="100" strokeDasharray="24 76" className="motion-safe:animate-border-glint" />
+                      <rect x="3" y="3" width="calc(100% - 6px)" height="calc(100% - 6px)" rx="21" fill="none" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" pathLength="100" strokeDasharray="4 96" className="motion-safe:animate-border-glint" />
+                    </svg>
+                    <span>Explore Central Park</span>
+                    <ArrowRight size={19} aria-hidden="true" className="transition-transform duration-300 motion-safe:group-hover:translate-x-1.5 motion-safe:group-focus-visible:translate-x-1.5 motion-reduce:transition-none" />
+                  </Link>
+                  <p className="mt-3 text-xs leading-6 text-white/70">
+                    Verified data. Strategic location. Deed-ready.
+                  </p>
+                  </div>
+                  <Link href="/contact#enquiry" className="inline-flex min-h-12 items-center justify-center text-sm font-medium text-white/70 underline-offset-4 hover:text-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D5B16D]">
+                    Book a Site Visit
+                  </Link>
+                </div>
               </div>
 
               {/* Telugu Tagline */}
@@ -171,7 +196,7 @@ export default function HomePage() {
 
             {/* Right Desktop Feature Card Stack */}
             <div className="hidden lg:col-span-4 lg:block">
-              <div className="relative rounded-3xl border border-white/15 bg-white/[0.04] p-7 backdrop-blur-xl shadow-2xl">
+              <div className="relative lg:pl-7">
                 <div className="mb-6 border-b border-white/10 pb-5">
                   <span className="text-[10px] font-bold tracking-[0.25em] text-[#D5B16D] uppercase">
                     Integrated Excellence
@@ -187,9 +212,9 @@ export default function HomePage() {
                     return (
                       <div
                         key={i}
-                        className="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.03] p-3.5 transition-all duration-300 hover:border-[#C6A15B]/30 hover:bg-white/[0.07]"
+                        className="flex items-center gap-4 py-3.5"
                       >
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#C6A15B]/30 bg-[#163D32] text-[#D5B16D]">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center text-[#D5B16D]">
                           <HIcon size={18} />
                         </div>
                         <div>

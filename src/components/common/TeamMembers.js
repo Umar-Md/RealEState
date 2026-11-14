@@ -114,7 +114,7 @@ export default function TeamMembers() {
 
         {/* Carousel */}
         <div className="relative mx-auto max-w-5xl">
-          <div className="leadership-carousel">
+          <div className={`leadership-carousel ${total === 1 ? "leadership-carousel-single" : ""}`}>
             {visibleMembers.map(({ member, position, index }, i) => {
               const isActive = position === 0;
 
@@ -156,7 +156,7 @@ export default function TeamMembers() {
                       </p>
 
                       {isActive && (
-                        <p className="mt-3 line-clamp-3 text-xs leading-5 text-white/75">
+                        <p className="mt-3 text-xs leading-5 text-white/85">
                           {member.bio}
                         </p>
                       )}
@@ -171,7 +171,7 @@ export default function TeamMembers() {
 
           {/* Navigation */}
           {total > 1 && (
-            <div className="mt-8 flex items-center justify-center gap-6">
+            <div className="mt-8 flex items-center justify-center gap-3 sm:gap-6">
               <button
                 type="button"
                 onClick={previous}
@@ -189,7 +189,7 @@ export default function TeamMembers() {
                 </svg>
               </button>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 {teamMembers.map((member, index) => (
                   <button
                     key={member.id}
@@ -345,6 +345,18 @@ export default function TeamMembers() {
           animation: cardEnter 700ms ease both;
         }
 
+        .leadership-card:focus-visible,
+        .carousel-arrow:focus-visible,
+        .carousel-dot:focus-visible {
+          outline: 2px solid #e1bd73;
+          outline-offset: 4px;
+        }
+
+        .leadership-carousel-single {
+          grid-template-columns: minmax(0, 380px);
+          justify-content: center;
+        }
+
         .leadership-card-active {
           z-index: 2;
           transform: scale(1);
@@ -376,6 +388,7 @@ export default function TeamMembers() {
         }
 
         .leadership-photo {
+          display: block;
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -384,18 +397,32 @@ export default function TeamMembers() {
         }
 
         .leadership-card:hover .leadership-photo {
-          transform: scale(1.045);
+          transform: none;
+        }
+
+        .leadership-card-active .leadership-photo-wrap {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          aspect-ratio: auto;
+          min-height: 440px;
+        }
+
+        .leadership-card-active .leadership-photo {
+          position: absolute;
+          inset: 0;
+          height: 100%;
+        }
+
+        .leadership-card-active .leadership-card-content {
+          position: relative;
+          padding-top: 220px;
         }
 
         .leadership-photo-shade {
           position: absolute;
           inset: 0;
-          background: linear-gradient(
-            180deg,
-            transparent 28%,
-            #071a14a8 65%,
-            #071a14f5 100%
-          );
+          background: linear-gradient(180deg, transparent 28%, #071a14a8 65%, #071a14f5 100%);
         }
 
         .leadership-card-content {
@@ -405,6 +432,9 @@ export default function TeamMembers() {
           left: 0;
           display: flex;
           flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+          overflow-wrap: break-word;
           padding: clamp(12px, 2vw, 22px);
         }
 
@@ -431,8 +461,8 @@ export default function TeamMembers() {
 
         .carousel-arrow {
           display: grid;
-          width: 38px;
-          height: 38px;
+          width: 44px;
+          height: 44px;
           place-items: center;
           border: 1px solid #c6a15b66;
           border-radius: 50%;
@@ -452,14 +482,22 @@ export default function TeamMembers() {
         }
 
         .carousel-dot {
+          display: grid;
+          width: 44px;
+          height: 44px;
+          place-items: center;
+          transition: 300ms ease;
+        }
+
+        .carousel-dot::before {
+          content: '';
           width: 6px;
           height: 6px;
           border-radius: 20px;
           background: #ffffff45;
-          transition: 300ms ease;
         }
 
-        .carousel-dot-active {
+        .carousel-dot-active::before {
           width: 25px;
           background: #c6a15b;
           box-shadow: 0 0 10px #c6a15b88;
@@ -509,16 +547,16 @@ export default function TeamMembers() {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 767px) {
           .leadership-section {
             padding-top: 52px;
             padding-bottom: 52px;
           }
 
           .leadership-carousel {
-            grid-template-columns: 0.65fr 1.2fr 0.65fr;
-            gap: 4px;
-            min-height: 280px;
+            grid-template-columns: minmax(0, 0.4fr) minmax(0, 1.4fr) minmax(0, 0.4fr);
+            gap: 8px;
+            min-height: 360px;
           }
 
           .leadership-card-side {
@@ -526,26 +564,31 @@ export default function TeamMembers() {
             opacity: 0.55;
           }
 
-          .leadership-card-side .leadership-card-content {
-            padding: 7px;
+          .leadership-card-side .leadership-photo-wrap {
+            height: 160px;
+            aspect-ratio: auto;
           }
 
-          .leadership-card-side .leadership-card-content span {
+          .leadership-card-side .leadership-card-content {
             display: none;
           }
 
-          .leadership-card-side h3 {
-            font-size: 11px;
-            overflow-wrap: anywhere;
+          .leadership-card-active .leadership-photo-wrap {
+            min-height: 440px;
           }
 
-          .leadership-card-side .leadership-card-content > p {
-            font-size: 7px;
-            letter-spacing: 0.05em;
+          .leadership-photo {
+            position: absolute;
+            inset: 0;
           }
 
           .leadership-card-active .leadership-card-content {
-            padding: 12px;
+            padding: 200px 14px 14px;
+          }
+
+          .leadership-carousel-single {
+            grid-template-columns: minmax(0, 360px);
+            justify-content: center;
           }
         }
 
