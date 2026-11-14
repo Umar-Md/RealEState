@@ -74,10 +74,10 @@ export default function SiteHeader() {
 
   const solutionsActive = pathname.startsWith("/solutions");
 
-const closeMenu = useCallback(() => {
-  setOpen(false);
-  setDivisionsOpen(false);
-}, []);
+  const closeMenu = useCallback(() => {
+    setOpen(false);
+    setDivisionsOpen(false);
+  }, []);
 
   // ESCAPE AND RESIZE
   useEffect(() => {
@@ -100,12 +100,12 @@ const closeMenu = useCallback(() => {
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, []);
+  }, [closeMenu]);
 
   // CLOSE ON ROUTE CHANGE
   useEffect(() => {
     closeMenu();
-  }, [pathname]);
+  }, [pathname, closeMenu]);
 
   // PREVENT BACKGROUND SCROLL
   useEffect(() => {
@@ -316,7 +316,7 @@ const closeMenu = useCallback(() => {
             <div className="flex items-center gap-3">
               <Link
                 href="/booking"
-                className="group flex h-10 items-center gap-2 rounded-full bg-[#102A23] px-5 text-[12px] font-bold tracking-wide text-[#D5B16D] shadow-sm transition-all duration-300 hover:bg-[#C6A15B] hover:text-[#102A23] hover:shadow-md"
+                className="group flex h-11 items-center gap-2.5 rounded-full bg-gradient-to-b from-[#E3C27F] to-[#C6A15B] px-6 text-[12px] font-bold tracking-wide text-[#102A23] shadow-[0_6px_20px_rgba(213,177,109,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:from-white hover:to-white hover:shadow-[0_10px_28px_rgba(213,177,109,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D5B16D] focus-visible:ring-offset-2 focus-visible:ring-offset-[#102A23]"
               >
                 <span>Book Consultation</span>
                 <ArrowUpRight
