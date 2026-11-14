@@ -19,10 +19,10 @@ export default function ProjectCard({ project, featured = false }) {
             fill
             priority={featured}
             sizes="(min-width: 1024px) 600px, (min-width: 768px) 50vw, 100vw"
-            className="object-cover transition-transform duration-700 motion-safe:group-hover:scale-[1.025] motion-reduce:transition-none"
+            className={project.id === 'central-park' ? 'object-contain' : 'object-cover transition-transform duration-700 motion-safe:group-hover:scale-[1.025] motion-reduce:transition-none'}
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/15" />
-          <div className="absolute left-6 top-6"><ProjectBadge project={project} /></div>
+          <div className={`absolute ${project.id === 'central-park' ? 'right-6 top-12' : 'left-6 top-6'}`}><ProjectBadge project={project} /></div>
           <span className="absolute bottom-6 right-6 grid h-12 w-12 place-items-center rounded-full border border-white/40 bg-black/20 text-white backdrop-blur-md transition-colors group-hover:bg-[#C6A15B] group-hover:text-[#173D33]">
             <ArrowUpRight size={22} aria-hidden="true" />
           </span>

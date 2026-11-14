@@ -42,7 +42,7 @@ export default function RegionalConnectivitySection({ index }) {
             </div>
 
             <p className="max-w-3xl break-words font-sans text-sm leading-7 text-[#46534C] sm:text-[15px] sm:leading-8 dark:text-[#D0D8D2]">
-              {"Route details, travel times, distances and transport capacity are not included until verified against reliable, current sources."}
+              {"SSP’s guide quotes approximately 80 km to Hyderabad, 14 km to Zaheerabad railway station, 120 km to Rajiv Gandhi International Airport and 25 km to Bidar Airport. It also describes a 9.5 km greenfield road connecting the Mumbai Highway with NIMZ. Distances are guide references, depend on the starting point and route, and are not travel-time estimates."}
             </p>
 
             <div className="mt-6 h-[3px] w-12 rounded-full bg-[#C6A15B] transition-all duration-300 group-hover:w-20" />

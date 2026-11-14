@@ -8,7 +8,7 @@ export default function IndustrialCorridorSection({ index }) {
       index={index}
       section={{
         id: 'industrial-corridor',
-        title: 'Hyderabad–Nagpur Industrial Corridor',
+        title: 'Hyderabad–Mumbai industrial corridor',
       }}
     >
       <div className="relative overflow-hidden border border-[#163D32]/10 bg-[#F1F3ED]">
@@ -29,7 +29,7 @@ export default function IndustrialCorridorSection({ index }) {
             <div className="absolute bottom-0 left-0 top-0 hidden w-[3px] bg-[#C6A15B] sm:block" />
 
             <p className="min-w-0 font-sans text-sm font-normal leading-7 text-[#46534C] sm:text-[15px] sm:leading-8">
-              {"The Hyderabad–Nagpur Industrial Corridor is the industrial-corridor context identified in the project brief. No project status, delivery date or corridor statistic is stated here without a verified source."}
+              {"SSP’s guide places Zaheerabad in the Hyderabad–Mumbai industrial corridor context, linking its manufacturing potential with access to Hyderabad, Mumbai and Bengaluru. This regional positioning supports the guide’s focus on logistics, suppliers and ancillary industries."}
             </p>
           </div>
         </div>

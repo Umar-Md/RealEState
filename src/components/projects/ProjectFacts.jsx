@@ -1,12 +1,12 @@
 
 
-export default function ProjectFacts({ facts }) {
+export default function ProjectFacts({ facts, overlap = true }) {
   if (!facts?.length) return null;
 
   return (
     <section className="relative z-10 bg-white">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-10 lg:px-16">
-        <dl className="-mt-10 grid grid-cols-2 overflow-hidden rounded-sm border border-ssp-green/10 bg-white shadow-[0_25px_80px_-30px_rgba(16,37,31,0.25)] md:grid-cols-4">
+        <dl className={`${overlap ? '-mt-10' : ''} grid grid-cols-2 overflow-hidden rounded-sm border border-ssp-green/10 bg-white shadow-[0_25px_80px_-30px_rgba(16,37,31,0.25)] md:grid-cols-4`}>
           {facts.map(([value, label], index) => (
             <div
               key={label}

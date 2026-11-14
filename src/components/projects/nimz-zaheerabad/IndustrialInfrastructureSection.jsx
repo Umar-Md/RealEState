@@ -35,7 +35,7 @@ export default function IndustrialInfrastructureSection({ index }) {
             </div>
 
             <p className="max-w-3xl break-words font-sans text-sm leading-7 text-[#46534C] sm:text-[15px] sm:leading-8 dark:text-[#D0D8D2]">
-              {"Specific utilities, transport links, facilities and delivery status have not been verified for publication. Any proposed development must be clearly labelled proposed and supported by a current official source."}
+              {"The guide outlines a planned green hub with power and water supply, sewage treatment, solar support, transport, security, schools and hospitals. It also discusses proposed SH-14 and local-road improvements, Zaheerabad railway-station upgrades and a commercial-development push for Bidar Airport. These are plans and initiatives described in the guide; they do not establish that every facility is operational."}
             </p>
 
             <div className="mt-6 h-[3px] w-12 rounded-full bg-[#C6A15B] transition-all duration-300 group-hover:w-20" />

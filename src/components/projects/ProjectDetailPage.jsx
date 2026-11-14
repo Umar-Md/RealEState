@@ -10,7 +10,7 @@ export default function ProjectDetailPage({ project }) {
     <article className="overflow-hidden bg-white selection:bg-ssp-gold selection:text-ssp-dark">
       <ProjectHero project={project} />
 
-      <ProjectFacts facts={project.facts} />
+      <ProjectFacts facts={project.facts} overlap={project.id !== 'central-park'} />
 
       <ProjectNavigation project={project} />
 

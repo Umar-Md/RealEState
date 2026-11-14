@@ -38,7 +38,7 @@ export default function OverviewSection({ index }) {
             </span>
 
             <p className="text-sm leading-7 text-gray-600">
-              {"NIMZ stands for National Investment and Manufacturing Zone. This page provides a regional overview of industrial development and business context around Zaheerabad, Telangana."}
+              {"NIMZ stands for National Investment and Manufacturing Zone. SSP’s investment guide presents Zaheerabad as a planned manufacturing hub with a land bank of 12,635 acres and an estimated project cost of ₹13,300 crore."}
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export default function OverviewSection({ index }) {
             </span>
 
             <p className="text-sm leading-7 text-gray-600">
-              {"No project-specific allotment, ownership, plot inventory or confirmed infrastructure is represented on this page."}
+              {"The guide describes a dedicated special purpose vehicle with Telangana holding 51% and the Government of India holding 49%. Its investment and employment figures describe potential, rather than completed outcomes."}
             </p>
           </div>
         </div>

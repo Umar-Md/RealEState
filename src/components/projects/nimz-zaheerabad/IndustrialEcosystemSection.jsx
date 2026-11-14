@@ -42,7 +42,7 @@ export default function IndustrialEcosystemSection({ index }) {
               </div>
 
               <p className="break-words font-sans text-sm leading-7 text-[#46534C] sm:text-[15px] sm:leading-8">
-                {"Add neighbouring industrial, logistics and business developments here only after verifying their identity, location and current status. No affiliation with Central Park is implied."}
+                {"Mahindra’s tractor-manufacturing presence and its announced EV expansion feature in the guide’s account of Zaheerabad’s industrial ecosystem. Alongside vehicle engineering and defence-sector announcements, the guide identifies potential demand for logistics, ancillary units, housing and commercial services. These regional examples do not imply affiliation with SSP or Central Park."}
               </p>
 
               <div className="mt-5 h-[2px] w-12 rounded-full bg-[#C6A15B]" />

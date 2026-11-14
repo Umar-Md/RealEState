@@ -4,7 +4,7 @@ import { nimzZaheerabadProject } from '@/data/projects/nimzZaheerabad';
 export const metadata = {
   title: 'NIMZ Zaheerabad | Industrial Development',
   description:
-    'Explore regional industrial development, manufacturing context and business opportunities around NIMZ Zaheerabad.',
+    'Explore NIMZ Zaheerabad’s planned infrastructure, NH-65 connectivity and manufacturing ecosystem, based on SSP’s investment guide.',
   alternates: { canonical: '/projects/nimz-zaheerabad' },
 };
 

@@ -62,7 +62,7 @@ export default function ManufacturingSection({ index }) {
               </div>
 
               <p className="max-w-3xl break-words font-sans text-sm leading-7 text-[#46534C] sm:text-[15px] sm:leading-8 dark:text-[#D0D8D2]">
-                {"Manufacturing and related business potential can be explored in the context of the wider regional ecosystem. Sector availability, eligibility, land access and operating requirements must be independently confirmed."}
+                {"The guide highlights automotive and electric vehicles, vehicle research and testing, advanced defence manufacturing, and associated supplier industries. It cites Hyundai Motor India Engineering, Triton Electric Vehicles and VEM Technologies as examples of regional announcements. Announced investment and production targets should be read separately from operational capacity."}
               </p>
 
               <div className="mt-6 flex items-center gap-2">

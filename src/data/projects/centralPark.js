@@ -4,7 +4,7 @@ export const centralParkProject = {
   "headline": "90 Acres. 321 Plots. One Growth Corridor.",
   "description": "A DTCP-approved plotted township at Kohir X Roads on NH-65, positioned along the Hyderabad–Zaheerabad industrial growth corridor.",
   "category": "Residential Plotted Township",
-  "location": "Kohir X Roads, NH-65, Telangana",
+  "location": "Chilkepalli, Kohir X Roads, NH-65, Telangana",
   "href": "/projects/central-park",
   "enquiryInterest": "Central Park — Residential Plotted Township",
   "hero": {
