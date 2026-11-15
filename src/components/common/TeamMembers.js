@@ -133,18 +133,18 @@ export default function TeamMembers() {
                   }}
                 >
                   <div className="leadership-photo-wrap">
-                    <img
+                    {member.photo ? <img
                       src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${member.photo}`}
                       alt={member.name}
                       className="leadership-photo"
-                    />
+                    /> : <div className="leadership-photo flex items-center justify-center bg-[#244337] text-6xl font-semibold text-[#E4C98F]" aria-label={member.name}>{member.initials}</div>}
 
                     <div className="leadership-photo-shade" />
 
                     <div className="leadership-card-content">
                       <span className="mb-2 inline-flex w-fit items-center gap-2 rounded-full border border-[#C6A15B]/50 bg-black/30 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#E4C98F] backdrop-blur-md">
                         <span className="h-1.5 w-1.5 rounded-full bg-[#C6A15B]" />
-                        {isActive ? "Leadership" : "SSP"}
+                        {member.group}
                       </span>
 
                       <h3 className="font-display text-xl font-semibold text-white sm:text-2xl">
@@ -155,7 +155,7 @@ export default function TeamMembers() {
                         {member.role}
                       </p>
 
-                      {isActive && (
+                      {isActive && member.bio && (
                         <p className="mt-3 text-xs leading-5 text-white/85">
                           {member.bio}
                         </p>
