@@ -9,7 +9,6 @@ const interestOptions = [
   "SSP Properties – Residential",
   "Open Plots & Land",
   "Central Park — Residential Plotted Township",
-  "NIMZ Zaheerabad — Industrial Development",
   "Commercial Offices",
   "Retail",
   "SSP Wealth – Investment Advisory",

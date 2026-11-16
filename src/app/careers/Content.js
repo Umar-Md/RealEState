@@ -435,7 +435,7 @@ const positions = [
 
     experience: "As per management requirements",
 
-    reporting: "Board of Directors",
+    reporting: "Board of Director",
 
     purpose:
       "Provide overall corporate leadership, strategic direction, and organizational governance.",
@@ -488,7 +488,7 @@ const positions = [
 
     experience: "As per management requirements",
 
-    reporting: "Board of Directors",
+    reporting: "Board of Director",
 
     purpose:
       "Lead business development, marketing strategy, project commercialization and strategic growth.",
@@ -1152,7 +1152,9 @@ export default function CareersContent() {
                     Apply via WhatsApp
                   </h3>
 
-                  <p className="mt-1 text-sm text-gray-500">+91 {companyContact.phone}</p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    +91 {companyContact.phone}
+                  </p>
                 </div>
 
                 <ArrowUpRight

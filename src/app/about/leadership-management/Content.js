@@ -101,7 +101,7 @@ export default function LeadershipManagement() {
           </div>
           <div className="relative z-10 grid items-center gap-2 p-6 sm:p-10 lg:grid-cols-12 lg:gap-10 lg:p-12">
             <div className={`flex flex-col justify-center py-4 lg:col-span-7 ${director.id === "rajeswari" ? "lg:order-2" : "lg:order-1"}`}>
-              <span className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-[#D5B16D]">Board of Directors</span>
+              <span className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-[#D5B16D]">Board of Director</span>
               <h3 className="font-display text-2xl font-semibold text-white sm:text-3xl">{director.name}</h3>
               <p className="mt-3 max-w-lg text-sm font-medium leading-6 text-[#D5B16D]">{director.role}</p>
               <span className="mt-6 h-px w-16 bg-[#C6A15B]/60" aria-hidden="true" />
