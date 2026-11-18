@@ -68,7 +68,7 @@ Demo architectural photography is loaded from Unsplash. Replace with SSP-approve
 
 ## Meeting booking
 
-The static `/booking/` page uses SSP branding, the existing SSP logo, and Satish Reddy as the contact. The connected event is `https://cal.com/umar-mohammad/mohammad-umar`, supplied by the account owner. It is the default when no deployment override is set. Invalid settings show a scheduling-unavailable state with a Contact link.
+The static `/booking/` page uses SSP branding, the existing SSP logo, and Satish Reddy as the contact. The connected event is `https://cal.com/swayam-sampada-properties/ssp`, supplied by the account owner. It is the default when no deployment override is set. Invalid settings show a scheduling-unavailable state with a Contact link.
 
 ### Connect your Cal.com account
 

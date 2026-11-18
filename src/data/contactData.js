@@ -6,7 +6,7 @@
 };
 
 export const bookingContact = {
-  phone: '99490 55446',
-  telephone: '+919949055446',
-  whatsappUrl: 'https://wa.me/919949055446',
+  phone: '99896 63776',
+  telephone: '+9199896 63776',
+  whatsappUrl: 'https://wa.me/9199896 63776',
 };

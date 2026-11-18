@@ -2,7 +2,7 @@ import { getCalConfig } from './cal-config.mjs';
 
 const config = getCalConfig({
   origin: process.env.NEXT_PUBLIC_CAL_ORIGIN || 'https://app.cal.com',
-  event: process.env.NEXT_PUBLIC_CAL_EVENT || 'umar-mohammad/mohammad-umar',
+  event: process.env.NEXT_PUBLIC_CAL_EVENT || 'swayam-sampada-properties/ssp',
 });
 export const CAL_ORIGIN = config.origin;
 export const CAL_EVENT = config.event;
