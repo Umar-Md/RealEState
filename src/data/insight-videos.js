@@ -5,4 +5,4 @@ export const insightVideos = [
   { id: 'vikasith-bharath', youtubeId: 'XClmgxgCfMU', category: 'National perspectives', title: 'Vikasith Bharath 2047', description: 'Watch the Vikasith Bharath 2047 presentation for a broader national perspective.' },
   { id: 'ssp-presentation', youtubeId: 'Z1jyOU4i3es', start: 87, category: 'SSP presentation', title: 'SSP Voice Presentation', description: 'Listen to the SSP presentation. This video begins at 1:27.' },
 ];
-export const insightReferenceVideo = { title: 'Reference video', href: 'https://www.youtube.com/watch?v=MFAWsVELnQQ' };
+export const insightReferenceVideo = { title: 'Zaheerabad, Telangana - NICDC', href: 'https://share.google/b0xWnJrtaobcHCcCu' };

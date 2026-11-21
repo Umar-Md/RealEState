@@ -1,7 +1,9 @@
+
 import "./globals.css";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata = {
   metadataBase: new URL(
@@ -24,11 +26,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth motion-reduce:scroll-auto">
       <body className="bg-white font-sans text-ssp-charcoal antialiased selection:bg-ssp-gold selection:text-ssp-dark [&_a]:focus-visible:outline-ssp-gold [&_button]:focus-visible:outline-ssp-gold">
-        <a href="#main-content" className="sr-only fixed left-4 top-4 z-[100] bg-white px-5 py-3 text-ssp-dark focus:not-sr-only">Skip to content</a>
+        <a
+          href="#main-content"
+          className="sr-only fixed left-4 top-4 z-[100] bg-white px-5 py-3 text-ssp-dark focus:not-sr-only"
+        >
+          Skip to content
+        </a>
+
         <SiteHeader />
-        <main id="main-content" className="min-w-0">{children}</main>
+
+        <main id="main-content" className="min-w-0">
+          {children}
+        </main>
+
         <SiteFooter />
         <WhatsAppButton />
+
+        {/* Google Tag Manager */}
+        <GoogleTagManager gtmId="GTM-PVT7FX7M" />
       </body>
     </html>
   );

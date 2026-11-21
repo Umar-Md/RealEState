@@ -1,3 +1,5 @@
+import { insightReferenceVideo } from './insight-videos';
+
 const architecture = (id) => `/images/architecture/${id}-1920.webp`;
 
 export const insightCategories = [
@@ -8,7 +10,7 @@ export const insightCategories = [
 ];
 
 export const insightSources = {
-  nicdc: { title: 'NICDC: Zaheerabad, Telangana — project overview and connectivity', url: 'https://nicdc.in/projects/12-new-projects/zaheerabad-telangana' },
+  nicdc: { title: insightReferenceVideo.title, url: insightReferenceVideo.href },
   buildnow: { title: 'Government of Telangana: BuildNow approval system', url: 'https://buildnow.telangana.gov.in/' },
   rera: { title: 'Telangana RERA: project search and citizen information', url: 'https://rera.telangana.gov.in/' },
   layout: { title: 'Government of Telangana: layout regularisation FAQs', url: 'https://lrs.telangana.gov.in/Documents/FAQs-LRS%202020.pdf' },

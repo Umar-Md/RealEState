@@ -1,9 +1,10 @@
-import { insights } from '@/data/insights';
+import { insights } from "@/data/insights";
 
 export const dynamic = "force-static";
 
 export default function sitemap() {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://sspwealth.in";
+
   const paths = [
     "",
     "/about",
@@ -27,11 +28,15 @@ export default function sitemap() {
     "/privacy-policy",
     "/terms",
   ];
-  return [...paths.map((path) => ({
+
+  const staticPages = paths.map((path) => ({
     url: `${base}${path}`,
-    lastModified: new Date(),
-  })), ...insights.map((article) => ({
+  }));
+
+  const insightPages = insights.map((article) => ({
     url: `${base}/insights/${article.slug}`,
     lastModified: new Date(`${article.updated}T09:00:00+05:30`),
-  }))];
+  }));
+
+  return [...staticPages, ...insightPages];
 }
